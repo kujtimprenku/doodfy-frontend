@@ -1,0 +1,13 @@
+<hr class="neonDivider">
+<p *ngIf="mostViewed" class="pageTitle" style="margin-left: 3px">Most viewed</p>
+<app-on-load *ngIf="!mostViewed"></app-on-load>
+<app-activity-card
+        [activity]="mostViewed"
+        *ngIf="mostViewed"></app-activity-card>
+
+<hr class="neonDivider">
+
+<p *ngIf="mostJoined" class="pageTitle" style="margin-left: 3px">Most joined</p>
+<app-activity-card
+        [activity]="mostJoined"
+        *ngIf="mostJoined"></app-activity-card>

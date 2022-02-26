@@ -1,0 +1,322 @@
+.profilePage {
+    color: #fff;
+    display: flex;
+}
+
+.profileAside {
+    width: 350px;
+}
+
+.photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.username {
+    font-size: 20px;
+    padding: 15px 35px 15px 0;
+}
+
+.editProfile {
+    width: 75px;
+    font-size: 14px;
+    color: #DB0054;
+    cursor: pointer;
+}
+
+.editProfile:hover {
+    text-decoration: underline;
+}
+
+.biography {
+    padding: 20px 30px 20px 0;
+    color: rgb(181, 181, 181);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.profileContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileStats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statsCard {
+    width: 180px;
+    height: 160px;
+    padding-left: 20px;
+    border-left: 1px solid gray;
+}
+
+.statsCard p {
+    color: #9b9b9b
+}
+
+.statsCard span {
+    color: white;
+    font-size: 56px;
+    font-weight: 600;
+}
+
+.profileNavbar {
+    display: flex;
+    margin: 25px 0;
+}
+
+.navLink {
+    margin-right: 25px;
+    color: rgba(165, 165, 165, 0.76);
+}
+
+.navLink span {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.navLink span:hover {
+    color: white;
+}
+
+.profileActivities {
+    padding: 20px;
+    min-height: 500px;
+    background-color: #15131b;
+}
+
+.active {
+    color: white;
+}
+
+.friendsButton mat-icon {
+    width: 30px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.friendsButton {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.friendSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-size: 14px;
+    padding: 0 12px;
+    background-color: grey;
+    cursor: pointer;
+}
+
+.friendsButton div {
+    display: flex;
+    height: 24px;
+}
+
+.friendsButton p {
+    cursor: pointer;
+}
+
+.friendsButton mat-icon:hover, p:hover {
+    color: white;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+}
+
+.social-media a {
+    margin-right: 10px;
+} 
+
+.firstTopic {
+    font-size: 22px;
+}
+.secondTopic {
+    font-size: 18px;
+}
+.thirdTopic {
+    font-size: 14px;
+}
+.mobileLevel {
+    display: none;
+}
+.neonLines {
+    display: none;
+}
+
+.navbar-mobile {
+    display: none;
+}
+
+ /*profile responsive*/
+
+ @media (max-width: 1700px) {
+   
+}
+
+@media (max-width: 1430px){
+    .profileAside {
+        margin-right: 20px;
+    }
+    .statsCard {
+        width: 115px;
+        height: 110px;
+    } 
+    .statsCard span {
+        font-size: 40px;
+    }
+    .photo {
+        width: 120px;
+        height: 120px;
+    }
+    .firstTopic {
+        font-size: 17px;
+    }
+    .secondTopic {
+        font-size: 16px;
+    }
+    .thirdTopic {
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .statsCard {
+        width: 115px;
+        height: 110px;
+    } 
+    .statsCard span {
+        font-size: 40px;
+    }
+    .photo {
+        width: 120px;
+        height: 120px;
+    }
+    .firstTopic {
+        font-size: 17px;
+    }
+    .secondTopic {
+        font-size: 16px;
+    }
+    .thirdTopic {
+        font-size: 14px;
+    }
+    .profileAside {
+        width:134px;
+    }
+}
+
+@media (max-width: 730px) {
+    .profilePage {
+        flex-direction: column;
+    }
+    .profileAside {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-right: 0px;
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
+    .photo {
+        width: 70px;
+        height: 70px;
+    }
+    .mobileProfile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mobileDetail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 20px;
+        height: 50px;
+    }
+    .username {
+        padding: 0px;
+        font-weight: 600;
+    }
+    .biography {
+        padding: 0px;
+        padding-top: 20px;
+    }
+    .profileStats {
+        display: none;
+    }
+    .mobileUser {
+        display: flex;
+    }
+    .mobileLevel {
+        display: flex;
+        flex-direction: column;
+    }
+    .social-media {
+        margin-top: 10px;
+    }
+    .neonLines {
+        display: block;
+        border-top: 2px solid pink;
+        border-image: linear-gradient(30deg, rgba(240, 72, 140, 1) 60%, rgba(87, 158, 255, 1) 90%) 10 10 0 0; 
+        margin-bottom: 0px;
+    }
+    
+    .profileNavbar {
+        display: none;
+    }
+
+    .navbar-mobile {
+        display: block;
+        width: 117px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        margin: 25px 20px;
+        font-size: 15px;
+    }
+
+    mat-select {
+        display: block;
+        width: 117px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        margin: 25px 20px;
+        font-size: 15px;
+    }
+
+    .navbar-mobile-item {
+        width: 120px;
+        color: black;
+    }
+}
+@media (max-width: 530px) {
+    
+}
+
+@media (max-width: 320px) {
+    .profileActivities {
+        padding: 0px;
+    }
+
+    .mobileProfile {
+        width: 305px;
+    }
+}
+
+
+

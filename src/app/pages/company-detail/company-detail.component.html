@@ -1,0 +1,116 @@
+<div class="coverPhoto"
+     [ngStyle]="{'background-image': 'url('+company.cover_image+')'}">
+    <div class="gradient">
+        <div class="icons">
+            <div class="icon-c">
+                <a *ngIf="company.facebook_url" [href]="company.facebook_url" target="_blank">
+                    <img src="../../../assets/images/icons/facebook-c.png" alt="Facebook">
+                </a>
+            </div>
+            <div class="icon-c">
+                <a *ngIf="company.instagram_url" [href]="company.instagram_url" target="_blank">
+                    <img src="../../../assets/images/icons/instagram-c.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="icon-c">
+                <a *ngIf="company.twitter_url" [href]="company.twitter_url" target="_blank">
+                    <img src="../../../assets/images/icons/twitter-c.png" alt="Twitter">
+                </a>
+            </div>
+            <div class="icon-c">
+                <a (click)="onOpenModal()" style="cursor: pointer">
+                    <img src="../../../assets/images/icons/share-c.png" alt="Share">
+                </a>
+            </div>
+        </div>
+        <p>{{ company.firm }}</p>
+        <div style="display: flex;" *ngIf="myCompany">
+            <mat-spinner class="spinner" *ngIf="pending" color="warn" diameter="22"></mat-spinner>
+            <label mat-flat-button color="warn" class="importButton">
+                <i *ngIf="!uploadEnable"
+                   matTooltip="Choose Image"
+                   [matTooltipPosition]="'before'"
+                   class="material-icons upload-icon">photo_camera</i>
+                <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)"/>
+                <button *ngIf="uploadEnable" mat-flat-button color="primary" (click)="changeCoverImage()">Upload
+                </button>
+            </label>
+        </div>
+        <div *ngIf="!myCompany" style="width: 200px;"></div>
+    </div>
+</div>
+
+<div class="companyNavbar">
+    <p
+            class="links"
+            [routerLink]="['/company', company.id]"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"> Overview
+    </p>
+    <p class="links" routerLink="info" routerLinkActive="active">Information</p>
+    <div class="subscribe" *ngIf="!myCompany  && isAuthenticated">
+        <button mat-button color="accent"
+                (click)="company.has_subscribed ? onUnSubscribe(company.id) : onSubscribe(company.id)">
+            {{ company.has_subscribed ? "UNSUBSCRIBE" : "SUBSCRIBE" }}
+        </button>
+        <p>&nbsp;{{ company.nr_subscribers }}</p>
+    </div>
+
+    <div class="subscribe" *ngIf="!isAuthenticated">
+        <button mat-button color="accent" [matMenuTriggerFor]="menu">SUBSCRIBE</button>
+        <p>&nbsp;{{company.nr_subscribers}}</p>
+    </div>
+    <button *ngIf="myCompany" mat-button color="accent" [routerLink]="['/company', company.id, 'edit']">Edit Company
+    </button>
+</div>
+
+<mat-menu #menu="matMenu">
+    <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+        <h6 style="color: #0e0d15;" mat-menu-item> Want to subscribe {{company.firm | titlecase}} company?</h6>
+        <h6 style="color: #0e0d15;" mat-menu-item>You need to sign in to subscribe {{company.firm | titlecase}}.</h6>
+        <div mat-menu-item>
+            <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+        </div>
+    </div>
+</mat-menu>
+
+
+<ngx-smart-modal #companyModal identifier="companyModal">
+    <div class="inviteModal">
+        <div class="inviteModal-header">
+            <h3>Share</h3>
+            <hr class="neonDivider">
+        </div>
+        <div class="socialIcons">
+            <div><img src="../../../assets/images/icons/facebook.png" alt="facebook"></div>
+            <p>Facebook</p>
+        </div>
+        <div class="socialIcons">
+            <img src="../../../assets/images/icons/twitter.png" alt="facebook">
+            <p>Twitter</p>
+        </div>
+        <div class="socialIcons">
+            <img src="../../../assets/images/icons/whatsapp.png" alt="facebook">
+            <p>WhatsApp</p>
+        </div>
+        <div class="socialIcons" (click)="linkCopied()" ngxClipboard [cbContent]="getLocationHref()">
+            <img src="../../../assets/images/icons/copylink.png" alt="facebook">
+            <p>Copy Link</p>
+        </div>
+        <div class="socialIcons" *ngIf="isAuthenticated">
+            <img src="../../../assets/images/icons/friends.png" alt="facebook">
+            <p>Invite Subscibers</p>
+        </div>
+        <div style="display: flex;justify-content: center;margin-top: 20px;">
+            <button class="cancelButton" (click)="onCloseModal()" mat-menu-item>
+                <span>Cancel</span>
+            </button>
+        </div>
+
+    </div>
+</ngx-smart-modal>
+
+
+<div class="companyRoutes">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,107 @@
+<div class="cardList">
+    <mat-card class="add-new-activity" *ngIf="showAddNewActivity" (click)="onCreateActivity()" >
+        <i class="material-icons add-icon"  >add_circle</i>
+        <div>
+            <p>Create Activity</p>
+        </div>
+    </mat-card>
+    <mat-card class="activityCard" *ngFor="let activity of activity">
+        <img mat-card-image [routerLink]="['/activity/', activity.id]" [src]="[activity.image]" height="160px"
+             alt="{{activity.image}}"
+        (error)="error(activity)"
+        >
+        <div class="logoHolder" [routerLink]="['/activity/', activity.id]">
+            <div>
+                <mat-icon *ngIf="activity.has_joined" class="joinLogo">check_circle</mat-icon>
+            </div>
+            <div *ngIf="activity.has_xp" class="xpLogo">
+                <p>XP</p>
+            </div>
+        </div>
+        <mat-card-content style="margin-bottom: 8px;">
+            <div class="activityContent">
+                <div class="titleHolder">
+                    <p class="activityTitle" [routerLink]="['/activity/', activity.id]">{{activity.title}}</p>
+                </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <div *ngIf="isAuthenticated">
+                            <button mat-menu-item
+                                    (click)="activity.has_joined ? onUnJoinActivity(activity.id) : onJoinActivity(activity)">
+                                <span>{{activity.has_joined ? 'Unjoin' : 'Join'}}</span>
+                            </button>
+                            <button mat-menu-item
+                                    (click)="activity.has_saved ? onUnSaveActivity(activity.id) : onSaveActivity(activity)">
+                                <span>{{activity.has_saved ? 'Unsave' : 'Save'}}</span>
+                            </button>
+                            <button mat-menu-item (click)="onOpenModal()">
+                                <span>Share</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Not interested</span>
+                            </button>
+                        </div>
+
+                        <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+                            <p mat-menu-item> Want to join to this activity?</p>
+                            <p mat-menu-item>You need to sign in to join to this activity.</p>
+                            <div mat-menu-item >
+                                <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+                            </div>
+                        </div>
+                    </mat-menu>
+            </div>
+            <p *ngIf="activity.user['role'] == 'user'" class="activityAuthor" [routerLink]="['/', activity.user.id]">{{activity.user.username}}</p>
+            <p *ngIf="activity.user['role'] == 'company'" class="activityAuthor" [routerLink]="['/company', activity.user.id]">{{activity.user['firm']}}</p>
+        </mat-card-content>
+        <mat-card-footer class="cardFooter" [routerLink]="['/activity/', activity.id]">
+            <div>
+                <mat-icon>group</mat-icon>
+                <span>{{activity.nr_joined}}</span>
+            </div>
+            <div>
+                <mat-icon>date_range</mat-icon>
+                <span>{{activity.start_date | date: 'MMMM d'}}</span>
+            </div>
+        </mat-card-footer>
+    </mat-card>
+</div>
+
+<ngx-smart-modal #myModal identifier="myModal">
+    <div class="inviteModal">
+        <h3 style="display: flex;justify-content: center;font-weight: bold">Share</h3>
+        <hr class="neonDivider">
+        <div class="socialIcons">
+            <div> <img src="../../../assets/images/icons/facebook.png" alt="facebook"></div>
+            <p>Facebook</p>
+        </div>
+        <div class="socialIcons">
+                <img src="../../../assets/images/icons/Instagram.png" alt="facebook">
+                <p>Instagram</p>
+            </div>
+        <div class="socialIcons">
+                <img src="../../../assets/images/icons/twitter.png" alt="facebook">
+                <p>Twitter</p>
+            </div>
+            <div class="socialIcons">
+                    <img src="../../../assets/images/icons/whatsapp.png" alt="facebook">
+                    <p>WhatsApp</p>
+                </div>
+                <div class="socialIcons">
+                        <img src="../../../assets/images/icons/copylink.png" alt="facebook">
+                        <p>Copy Link</p>
+                    </div>   
+                    <div class="socialIcons">
+                            <img src="../../../assets/images/icons/friends.png" alt="facebook">
+                            <p>Invite Friends</p>
+                    </div> 
+                    <div style="display: flex;justify-content: center;margin-top: 20px;">
+                        <button  class="cancelButton" mat-menu-item (click)="onCloseModal()">
+                            <span >Cancel</span>
+                        </button>
+                    </div>   
+                   
+    </div>
+</ngx-smart-modal>

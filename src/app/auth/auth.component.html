@@ -1,0 +1,25 @@
+<section>
+    <aside class="contentAuth-holder">
+        <div class="contentAuth">
+        </div>
+    </aside>
+    <article>
+        <div class="contentAuth">
+            <div class="authNav">
+                <button class="login" [routerLinkActive]="['active']" [routerLink]="['/login']" mat-button>Sign in
+                </button>
+                <p>&nbsp;|&nbsp;</p>
+                <button class="signUp" [routerLinkActive]="['active']" [routerLink]="['/signUp']" mat-button>Sign up
+                </button>
+            </div>
+            <div class="formHolder">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <div class="verifyEmailMessage" *ngIf="authService.emailConfirm.show">
+            <p style="width: 40px"></p>
+            <p>{{authService.emailConfirm.message}}</p>
+            <mat-icon (click)="authService.emailConfirm.show = false">clear</mat-icon>
+        </div>
+    </article>
+</section>

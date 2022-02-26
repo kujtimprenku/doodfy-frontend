@@ -1,0 +1,578 @@
+.loading {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    color: blue;
+}
+
+.example-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition-duration: 0ms !important;
+}
+
+.example-toolbar {
+    background-color: #1f1d25;
+    height: 55px;
+    color: white;
+}
+
+
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+h1.example-app-name {
+    margin-left: 8px;
+}
+
+.example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    background-color: #0f0d15;
+    flex: 1;
+    transition-duration: 0ms !important;
+}
+
+.example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+    transition-duration: 0ms !important;
+}
+
+.content {
+    width: 1400px;
+    padding: 40px 0 20px 0;
+    margin: auto;
+    overflow: hidden;
+}
+
+.sideBar {
+    background-color: #15131b;
+    padding: 7px 0;
+    color: #dedede;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sideBar div {
+    outline: none;
+}
+
+.sideBar mat-icon {
+    width: 50px;
+    height: 34px;
+    color: #909090;
+}
+
+.sideBarContent {
+    width: 240px;
+}
+
+.sideBarTitles {
+    font-weight: 600;
+    margin-left: 21px;
+    color: #909090;
+}
+
+.sideBarLinks {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 21px;
+    cursor: pointer;
+}
+
+.sideBarLinks:hover {
+    background-color: #4d4a52;
+}
+
+.sideBarLinksActive {
+    background-color: #323037;
+    font-weight: 600;
+    color: white;
+}
+
+.sideBarLinksActive mat-icon {
+    color: #e5125e;
+}
+
+
+.sideBarProfiles {
+    width: 50px;
+}
+
+.sideBarProfiles img {
+    border-radius: 50%;
+    
+}
+
+.interestsImage {
+    width: 30px;
+    height: 30px;
+}
+
+mat-sidenav-content {
+    background-color: #0f0d15;
+}
+
+.navbarContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbarContent-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbarContent-logo img {
+    cursor: pointer;
+}
+
+.searchNavbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchNavbar input {
+    width: 35%;
+    padding: 7px;
+    font-size: 15px;
+    background-color: #0f0d15;
+    color: #dedede;
+    border: 1px solid gray;
+    border-right: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    height: 17px;
+}
+
+.searchNavbar input:focus {
+    outline: none;
+    border-color: rgba(229, 18, 94, 0.63);
+}
+
+.autocomplete {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35px;
+    margin: 3px auto;
+    border-radius: 4px;
+    width: 42.3%;
+    z-index: 2;
+    background-color: white;
+    color: #000;
+    font-size: 13px;
+}
+
+.autocomplete hr {
+    border-color: #dfdfdf;
+    margin: 5px 0;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 14px
+}
+
+.suggest {
+    cursor: pointer;
+}
+
+.example-toolbar button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchNavbar button {
+
+    border-radius: 0 3px 3px 0;
+    border: 1px solid gray !important;
+    border-left: none !important;
+    background-color: #403f3f;
+    height: 33px;
+}
+
+.searchNavbar input:focus button {
+    border-color: rgba(229, 18, 94, 0.63) !important;
+}
+
+.navbarIcons {
+    /* width: 300px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navbarIcons mat-icon {
+    cursor: pointer;
+}
+
+.navbarIcons .mat-button {
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.profilePhoto {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.dropdownTitle {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.dropdownHr {
+    border: 0.5px solid rgba(145, 145, 145, 0.81);
+    margin: 8px 0;
+}
+
+.friendRequest {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.friendRequestDetail {
+    display: flex;
+    align-items: center;
+    width: 220px;
+    cursor: pointer;
+}
+
+.friendRequestButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80px;
+}
+
+
+.inviteNotification {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+}
+
+.inviteNotification-header {
+    padding: 10px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.inviteNotification-header:hover {
+    background-color: #ebe9e9;
+}
+
+.invitenotification-details {
+    margin-left: 10px;
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between;
+}
+
+.inviteNotification-header-username {
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.invite-created-at {
+    display: flex;
+    align-items: center;
+    padding: 3px 0 0 0;
+}
+
+.invite-created-at i {
+    margin-right: 4px;
+    font-size: 20px;
+}
+
+.notifyProfileImg {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.notifyActivityImg {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    background: center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.notification-image {
+    background-size: cover;
+    background-position: center;
+    width: 38px; 
+    height: 50px; 
+    cursor: pointer;
+}
+
+.inviteNotification-overlay {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+}
+
+.notification-see-all {
+    text-align: center;
+}
+
+.notification-see-all:hover {
+    text-decoration: underline;
+}
+
+.addInterest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.addInterest p {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    background-color: rgba(138, 138, 138, 0.66);
+}
+
+.alpha {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    cursor: pointer;
+}
+.doodfyImage {
+    margin-left: 10px;
+}
+
+.activateSearchButton {
+    display: none;
+}
+
+.medium-modal {
+    max-width: 1200px;
+    min-width: 900px;
+}
+.feedbaack {
+    position: fixed; 
+    top:50%;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    z-index: 1323;
+    background-color: #2b81e5!important;
+    border-color: #2b81e5!important;
+    -webkit-transform: rotate(270deg) translate(100%,-50%);
+    -moz-transform: rotate(270deg) translate(100%,-50%);
+    -ms-transform: rotate(270deg) translate(100%,-50%);
+    transform: rotate(270deg) translate(100%,-50%);
+    -webkit-transform-origin: right;
+    -moz-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+
+}
+
+.feedback-modal {
+    color: rgba(34, 30, 30, 0.66)
+}
+
+.feedback-logo {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    padding-top: 5px;
+}
+
+.feedback-logo  img {
+    height: 35px;
+}
+
+.feedback-modal-header {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 40px 0;
+    
+}
+
+.feedback-modal-header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.feedback-modal-question {
+    padding-bottom: 10px;
+}
+
+.feedback-modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-description textarea {
+    font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    
+}
+.feedback-description textarea:focus {
+    border: 1px solid #e5125e;
+    transition-duration: 0.2s;
+
+}
+
+.feedback-modal-button-holder {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+ngx-smart-modal .nsm-dialog-btn-close  {
+    display: none;
+}
+
+.clubNavbar {
+    display: flex;
+    font-size: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    height: 15px;
+    color: grey;
+    padding-right: 10px;
+    background-color: lightgray;
+
+}
+
+/* =========== RESPONSIVE =========== */
+
+@media (max-width: 1700px) {
+    .content {
+        width: 1165px;
+    }
+}
+
+@media (max-width: 1430px) {
+    .content {
+        width: 932px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .content {
+        width: 699px;
+    }
+}
+
+@media (max-width: 730px) {
+    .content {
+        width: 466px;
+    }
+
+    /* .navbarIcons {
+        display: none;
+    } */
+    .hideSearch-mobile {
+        display: none;
+    }
+    .navbarIcons {
+        justify-content:flex-start;
+    }
+    .alpha {
+       font-size: 20px;
+    }
+    .doodfyImage {
+        width: 70px;
+    }
+
+    .activateSearchButton {
+        display: flex;
+    }
+
+    .searchNavbar input {
+        width: 80%;
+    }
+
+    .hide {
+        display: none;
+    }
+    
+    .show {
+        display: flex!important;
+    }
+
+    .autocomplete {
+        width: 95%;
+    }
+
+    .alpha {
+        display: none;
+    }
+ 
+}
+
+@media (max-width: 530px) {
+    .content {
+        width: 375px;
+    }
+    .chat {
+        display: none!important;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .alpha {
+        display: none;
+    }
+}
+
+
+
+
+
+
+

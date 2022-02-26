@@ -1,0 +1,9 @@
+.mainContent {
+    display: flex;
+    color: white;
+    font-size: 20px;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 60px;
+}
+

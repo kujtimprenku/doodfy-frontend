@@ -1,0 +1,120 @@
+<div *ngIf="group">
+    <div *ngIf="group" class="coverPhoto"
+         [ngStyle]="{'background-image': 'url('+group.cover_image+')'}">
+        <div class="gradient">
+            <div class="icons">
+                <div class="icon-c">
+                    <a *ngIf="group.facebook_url" [href]="group.facebook_url" target="_blank">
+                        <img src="../../../assets/images/icons/facebook-c.png" alt="Facebook">
+                    </a>
+                </div>
+                <div class="icon-c">
+                    <a *ngIf="group.instagram_url" [href]="group.instagram_url" target="_blank">
+                        <img src="../../../assets/images/icons/instagram-c.png" alt="Instagram">
+                    </a>
+                </div>
+                <div class="icon-c">
+                    <a *ngIf="group.twitter_url" [href]="group.twitter_url" target="_blank">
+                        <img src="../../../assets/images/icons/twitter-c.png" alt="Twitter">
+                    </a>
+                </div>
+                <div class="icon-c">
+                    <a (click)="onOpenModal()" style="cursor: pointer">
+                        <img src="../../../assets/images/icons/share-c.png" alt="Share">
+                    </a>
+                </div>
+            </div>
+            <p style="color: white">{{group.name }}</p>
+            <div class="joinButton" *ngIf="group && !group.my_group && isAuthenticated">
+                <button *ngIf="!group.my_group && group.membership === -1" (click)="onRequestToJoin()" mat-flat-button
+                        color="accent">Join Group
+                </button>
+                <button *ngIf="!group.my_group && group.membership === 0" (click)="onLeaveGroup()" mat-flat-button
+                        color="accent">Requested
+                </button>
+                <button *ngIf="!group.my_group && group.membership === 1" (click)="onLeaveGroup()" mat-flat-button
+                        color="accent">Leave Group
+                </button>
+            </div>
+            <div class="joinButton" *ngIf="!isAuthenticated">
+                <button mat-flat-button color="accent" [matMenuTriggerFor]="menu">Join Group</button>
+            </div>
+            <div style="display: flex;" *ngIf="group && group.my_group">
+                <mat-spinner class="spinner" *ngIf="pending" color="warn" diameter="22"></mat-spinner>
+                <label mat-flat-button color="warn" class="importButton">
+                    <i *ngIf="!uploadEnable"
+                       matTooltip="Choose Image"
+                       [matTooltipPosition]="'before'"
+                       class="material-icons upload-icon">photo_camera</i>
+                    <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)"/>
+                    <button style="margin-right: 10px;" *ngIf="uploadEnable" mat-flat-button color="primary"
+                            (click)="changeCoverImage()">Upload
+                    </button>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="clubNavbar">
+        <p class="links" [routerLink]="['/group', group.id]"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }"> Overview</p>
+        <p class="links" routerLink="info" routerLinkActive="active">Information</p>
+        <p class="links" routerLink="members" routerLinkActive="active">Members <span
+                style="color: white;">{{group.nr_members !== 0 ? group.nr_members : ''}}</span></p>
+        <button *ngIf="group && group.my_group"
+                [routerLink]="['/group', group.id, 'edit']" routerLinkActive="router-link-active" mat-button
+                color="accent">Edit group
+        </button>
+    </div>
+
+    <ngx-smart-modal #companyModal identifier="companyModal">
+        <div class="inviteModal">
+            <div class="inviteModal-header">
+                <h3>Share</h3>
+                <hr class="neonDivider">
+            </div>
+            <div class="socialIcons">
+                <div><img src="../../../assets/images/icons/facebook.png" alt="facebook"></div>
+                <p>Facebook</p>
+            </div>
+            <div class="socialIcons">
+                <img src="../../../assets/images/icons/twitter.png" alt="facebook">
+                <p>Twitter</p>
+            </div>
+            <div class="socialIcons">
+                <img src="../../../assets/images/icons/whatsapp.png" alt="facebook">
+                <p>WhatsApp</p>
+            </div>
+            <div class="socialIcons" (click)="linkCopied()" ngxClipboard [cbContent]="getLocationHref()">
+                <img src="../../../assets/images/icons/copylink.png" alt="facebook">
+                <p>Copy Link</p>
+            </div>
+            <div class="socialIcons" *ngIf="isAuthenticated">
+                <img src="../../../assets/images/icons/friends.png" alt="facebook">
+                <p>Invite Members</p>
+            </div>
+            <div style="display: flex;justify-content: center;margin-top: 20px;">
+                <button class="cancelButton" (click)="onCloseModal()" mat-menu-item>
+                    <span>Cancel</span>
+                </button>
+            </div>
+
+        </div>
+    </ngx-smart-modal>
+    <div class="clubRoutes">
+        <router-outlet></router-outlet>
+        <div></div>
+    </div>
+
+    <mat-menu #menu="matMenu">
+        <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+            <h6 style="color: #0e0d15;" mat-menu-item> Want to join {{group.name | titlecase}} club?</h6>
+            <h6 style="color: #0e0d15;" mat-menu-item>You need to sign in to join club {{group.name | titlecase}}.</h6>
+            <div mat-menu-item>
+                <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+            </div>
+        </div>
+    </mat-menu>
+
+</div>

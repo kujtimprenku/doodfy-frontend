@@ -1,0 +1,15 @@
+<div class="settings-nav">
+    <p class="settings-nav-link" routerLink="/account" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">General</p> <span>&nbsp; | &nbsp;</span>
+    <p class="settings-nav-link" routerLink="edit-profile" routerLinkActive="active">Edit Profile</p><span> &nbsp; | &nbsp;</span>
+    <p class="settings-nav-link" routerLink="password" routerLinkActive="active">Change Password</p><span> &nbsp; | &nbsp;</span>
+    <p class="settings-nav-link" routerLink="notification" routerLinkActive="active">Notifications</p><span> &nbsp; | &nbsp;</span>
+    <p class="settings-nav-link" routerLink="receipts" routerLinkActive="active">Receipts</p>
+    <span> &nbsp; | &nbsp;</span>
+    <p class="settings-nav-link" routerLink="privacy-settings" routerLinkActive="active">Privacy</p>
+
+</div>
+<div class="settings-container">
+    <router-outlet></router-outlet>
+</div>
+

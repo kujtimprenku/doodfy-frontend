@@ -1,0 +1,113 @@
+section {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background: center url("http://doodfy.ch/uploads/assets/lens.GIF");
+    background-size: cover;
+}
+
+article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #2a2532f2;
+}
+
+.contentAuth {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 20px;
+}
+
+.logoHolder {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.authNav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 17px;
+}
+
+.login, .signUp {
+    font-size: 13px;
+    color: #b8b8b8;
+    cursor: pointer;
+    outline: none;
+    font-weight: 700;
+}
+
+.formHolder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    color: white;
+}
+
+.verifyEmailMessage {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 30px;
+    color: white;
+    background-color: #575757;
+}
+
+
+/* =========== RESPONSIVE =========== */
+
+@media (max-width: 1700px) {
+    
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .contentAuth-holder {
+        display: none;
+    }
+
+    article {
+        width: 100%;
+    }
+
+    .loadBesideTitle {
+        justify-content: center;
+    }
+    
+    .authNav {
+        display: none;
+    }
+}
+
+
+
+
+

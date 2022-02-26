@@ -1,0 +1,113 @@
+.formGroup {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-form-field {
+    padding: 5px 0;
+    font-size: 15px;
+}
+
+
+.placeHolder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.placeHolder mat-form-field {
+    width: 160px;
+    color: grey;
+}
+
+.buttonHolder {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.buttonHolder button {
+    margin: 0 5px;
+}
+
+.errorMessage {
+    font-size: 13px;
+    color: red;
+}
+
+.privacy-message {
+    font-size: 12px;
+    background-color: #3972da;
+    padding: 8px 4px;
+    border-radius: 4px;
+    width: 400px;
+}
+
+.login-mobile {
+    display: none;
+}
+mat-hint {
+    color: rgba(255, 255, 255, 0.51)!important;
+}
+
+@media (max-width: 1650px) {
+    .formGroup {
+    width: 400px;
+        font-size: 13px;
+    }
+
+    .placeHolder mat-form-field {
+        width: 160px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .formGroup {
+        width: 400px;
+    }
+
+    .placeHolder mat-form-field {
+        width: 160px;
+    }
+}
+
+@media (max-width: 730px) {
+    .login-mobile {
+      display: flex;
+      justify-content: center;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .login-mobile span {
+      color: #E5125E;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .formGroup {
+        width: 400px;
+    }
+  }
+  @media (max-width: 320px) {
+    .login-mobile {
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      .login-mobile span {
+        color: #E5125E;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+      .placeHolder mat-form-field {
+        width: 90px;
+    }
+    .formGroup {
+        width: 210px;
+    }
+
+  }

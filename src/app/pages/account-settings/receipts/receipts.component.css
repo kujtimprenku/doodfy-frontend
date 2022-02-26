@@ -1,0 +1,31 @@
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.settingsHolder {
+        display: flex;
+        justify-items: center;
+        justify-content: space-between;
+        align-items: center;
+        color: #dfdfdf;
+        border: 1px solid gray;
+        padding: 20px;
+        width: 80%;
+        margin-bottom: 20px;
+    }
+.receipts {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    
+}
+
+.iconsHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 180px;
+}

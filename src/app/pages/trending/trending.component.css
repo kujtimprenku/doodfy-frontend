@@ -1,0 +1,4 @@
+.neonDivider {
+    border: 1px solid pink;
+    border-image: linear-gradient(90deg, rgba(240, 72, 140, 1) 20%, rgba(87, 158, 255, 1) 90%) 0 0 10 0;
+}

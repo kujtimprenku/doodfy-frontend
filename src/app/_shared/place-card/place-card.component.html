@@ -1,0 +1,13 @@
+<div class="cardWraper">
+
+  <div *ngFor="let place of places">
+    <div class="companyCart"
+         [ngStyle]="{'background-image': 'url('+place.image+')'}"
+         [routerLink]="['/place/' + place.id]">
+      <div class="companyInfo">
+        <p class="companyName">{{place.name}}</p>
+        <p class="subscribed">Location: {{place.location}}</p>
+      </div>
+    </div>
+  </div>
+</div>

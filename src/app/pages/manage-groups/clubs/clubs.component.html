@@ -1,0 +1,15 @@
+<p *ngIf="clubs?.length > 0" class="pageTitle" style="margin-top: 20px; margin-left: 3px;">Your clubs</p>
+<div style="display: flex;justify-content: center;align-items: center">
+        <mat-spinner class="spinner" *ngIf="!clubsPending" color="warn" diameter="32" style="margin-top: 30px"></mat-spinner>
+    </div>
+<app-group-card
+        [groups]="clubs"
+        *ngIf="clubs">
+</app-group-card>
+<p *ngIf="clubsin?.length > 0" class="pageTitle" style="margin-top: 20px; margin-left: 3px;">Clubs you're in</p>
+<app-group-card
+        [groups]="clubsin"
+        *ngIf="clubsin">
+</app-group-card>
+<p *ngIf="clubs?.length == 0 && clubsin?.length ==0" class="pageTitle" style="display: flex; justify-content: center; color: #4b4b4b; margin-top: 20px"
+>You have not joined to any Club yet!</p>

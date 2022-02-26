@@ -1,0 +1,25 @@
+.editForm {
+    color: #fff;
+}
+
+.mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+.formFields {
+    margin-top: 20px;
+    width: 600px;
+}
+
+mat-radio-button {
+    margin-right: 20px;
+}
+
+.buttonHolder {
+    display: flex;
+}
+
+.buttonHolder button {
+    margin-right: 10px;
+}

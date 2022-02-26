@@ -1,0 +1,19 @@
+<p *ngIf="groups?.length > 0" class="pageTitle" style="margin-top: 20px; margin-left: 3px;">Your groups</p>
+<div style="display: flex;justify-content: center;align-items: center">
+        <mat-spinner class="spinner" *ngIf="!groupsPending" color="warn" diameter="32" style="margin-top: 30px"></mat-spinner>
+    </div>
+<app-group-card
+        [groups]="groups"
+        *ngIf="groups">
+</app-group-card>
+<p *ngIf="groupsin?.length > 0" class="pageTitle" style="margin-top: 20px; margin-left: 3px;">Groups you're in</p>
+<app-group-card
+        [groups]="groupsin"
+        *ngIf="groupsin">
+</app-group-card>
+
+<p *ngIf="groups?.length == 0 && groupsin?.length ==0" class="pageTitle" style="display: flex; justify-content: center; color: #4b4b4b; margin-top: 20px"
+>You have not joined to any Group yet!</p>
+
+
+

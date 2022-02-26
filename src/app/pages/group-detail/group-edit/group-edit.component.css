@@ -1,0 +1,12 @@
+.editForm {
+    color: #fff;
+}
+
+.buttonHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonHolder button {
+    margin-right: 10px;
+}

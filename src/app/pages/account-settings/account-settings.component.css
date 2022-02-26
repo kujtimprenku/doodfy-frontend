@@ -1,0 +1,43 @@
+.settings-nav {
+    display: flex;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.settings-nav-link {
+    color: #dfdfdf;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.active {
+    color: #e5125e;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .settings-nav {
+        flex-wrap: wrap;
+        margin: 0px 10px 30px 10px;
+    }
+}
+
+@media (max-width: 530px) { 
+
+}
+
+
+@media (max-width: 320px) {
+ 
+}

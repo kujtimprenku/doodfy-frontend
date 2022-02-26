@@ -1,0 +1,29 @@
+<div class="chatHeader" style="color: #1f1d25">{{this.friendMessage[0].receiver_id}}</div>
+<hr style="margin:0; border-bottom-color: #1f1d25">
+<div class="chatHolder">
+    <div class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div style="margin: 5px 0;" *ngFor="let message of friendMessage"
+             [ngClass]="message.my_comment ? 'right' : 'left'">
+            <div class="message" [ngClass]="message.my_comment ? 'myMessage' : 'friendMessage'">
+                <p>{{message.content}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="messageInput">
+        <mat-form-field [floatLabel]="'never'">
+                        <textarea matInput
+                                  (keydown.enter)="onSendMessage(); false"
+                                  [(ngModel)]="message"
+                                  placeholder="Message"
+                                  cdkTextareaAutosize
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="0"
+                                  cdkAutosizeMaxRows="3"></textarea>
+            <mat-icon (click)="onSendMessage()" matSuffix>send</mat-icon>
+        </mat-form-field>
+    </div>
+</div>
+
+
+
+

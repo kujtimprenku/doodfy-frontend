@@ -1,0 +1,35 @@
+<div class="cardWraper">
+    <div *ngFor="let group of groups">
+        <div class="companyCart"
+             [ngStyle]="{'background-image': 'url('+group.cover_image+')'}"
+        >
+            <div class="companyInfoWrapper" [routerLink]="['/' + group.group_type, group.id]">
+            </div>
+        </div>
+        <div class="companyInfoWrapper c2" [routerLink]="['/' + group.group_type, group.id]">
+            <div class="companyInfo">
+                <p class="companyName">{{ (group.name.length < 20) ? group.name : group.name.slice(0, 20) + ' ...'}}</p>
+                <p class="subscribed">{{group.nr_members}} members</p>
+            </div>
+        </div>
+        <div class="options">
+            <button class="optnBtn" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item
+                        *ngIf="!group.my_group" (click)="onLeaveGroup(group)">
+                    <span>Leave</span>
+                </button>
+                <button mat-menu-item
+                        *ngIf="group.my_group" [routerLink]="['/' + group.group_type, group.id, 'edit']">
+                    <span>Edit</span>
+                </button>
+                <button mat-menu-item *ngIf="group.my_group" (click)="confirmGroupDelete(group.id)">
+                    <span>Delete</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</div>
+

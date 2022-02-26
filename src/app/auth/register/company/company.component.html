@@ -1,0 +1,81 @@
+<form [formGroup]="companyInfoForm" class="formGroup">
+    <div *ngIf="firmInformation">
+
+        <mat-form-field>
+            <input matInput placeholder="Firm" formControlName="firm" required>
+            <mat-error *ngIf="companyInfoForm.get('firm').hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <div class="placeHolder">
+            <mat-form-field>
+                <mat-select placeholder="State" formControlName="country_id" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let country of countries"
+                                [value]="country.id">{{country['name']}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="companyInfoForm.get('country_id').hasError('required')">You must choose a state
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="City" formControlName="city_id" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let city of chosenCities" [value]="city.id">{{city['name']}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="companyInfoForm.get('city_id').hasError('required')">You must choose a city
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <input matInput placeholder="Street" formControlName="street" required>
+            <mat-error *ngIf="companyInfoForm.get('street').hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Branch" formControlName="branch">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Website" formControlName="website">
+        </mat-form-field>
+
+        <div class="buttonHolder">
+            <button mat-flat-button color="warn" (click)="toggleFirm()">Next</button>
+        </div>
+        <p class="login-mobile">Already have an account? 
+                <span [routerLinkActive]="['active']" [routerLink]="['/login']" >Log In
+                </span>
+        </p>
+    </div>
+</form>
+<p *ngIf="!firmInformation" class="privacy-message">* Contact details will not be shown to other users</p>
+<form *ngIf="!firmInformation" [formGroup]="userInfoForm" class="formGroup">
+    <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstname" required>
+        <mat-error *ngIf="userInfoForm.get('firstname').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastname" required>
+        <mat-error *ngIf="userInfoForm.get('lastname').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Phone" formControlName="phone" required>
+        <mat-error *ngIf="userInfoForm.get('phone').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <p class="incorrectMessage">{{emailExistErrorMessage}}</p>
+    <mat-form-field>
+        <input matInput placeholder="E-mail" type="email" (focusout)="emailCheck()" formControlName="email"
+               required>
+        <mat-error *ngIf="userInfoForm.get('email').hasError('required')">You must enter a value</mat-error>
+        <mat-error *ngIf="userInfoForm.get('email').hasError('email')">Enter valid email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password" required>
+        <mat-error *ngIf="userInfoForm.get('password').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+
+    <div class="buttonHolder">
+        <mat-spinner *ngIf="pending" color="warn" diameter="34"></mat-spinner>
+        <button mat-button (click)="toggleFirm()">Back</button>
+        <button mat-flat-button color="warn" (click)="onRegister()">Finish</button>
+        <div *ngIf="pending" style="width: 34px"></div>
+    </div>
+</form>

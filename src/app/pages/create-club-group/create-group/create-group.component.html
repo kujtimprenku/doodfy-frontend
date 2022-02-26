@@ -1,0 +1,21 @@
+<form [formGroup]="groupForm" class="formHolder editForm">
+    <mat-form-field>
+        <input matInput formControlName="name" type="text" placeholder="Group Name" required>
+        <mat-error *ngIf="groupForm.get('name').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+<!--    <div class="inviteMembers">-->
+<!--        <div class="inivteTitle">-->
+<!--            <p>Invite Members:</p>-->
+<!--        </div>-->
+<!--        <mat-form-field style="width: 360px;margin-left: 10px">-->
+<!--            <input matInput type="text" placeholder="Search Members">-->
+<!--        </mat-form-field>-->
+
+<!--    </div>-->
+    <div class="submitButton">
+        <button mat-flat-button color="warn"
+                [disabled]="!groupForm.valid"
+                (click)="onSubmit()">Save
+        </button>
+    </div>
+</form>

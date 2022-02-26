@@ -1,0 +1,90 @@
+<div class="general-container" *ngIf="currentUser">
+    <div class="profile-details-container">
+        <div class="profile-details">
+            <p class="profile-details-title">Profile</p>
+            <div class="profile-details-p">
+                <p>Username:</p>
+                <div class="info">
+                    <p>{{currentUser.username}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="profile-details-p">
+                <p>Email:</p>
+                <div class="info">
+                    <p>{{currentUser.email}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="profile-details-p">
+                <p>Country:</p>
+                <div class="info">
+                    <p>{{currentUser.country}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="profile-details-p">
+                <p>City:</p>
+                <div class="info">
+                    <p>{{currentUser.city?.name}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="profile-details-p">
+                <p>Birthday:</p>
+                <div class="info">
+                    <p>{{currentUser.birth_date}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="profile-details-p">
+                <p>Gender:</p>
+                <div class="info">
+                    <p>{{currentUser.gender}}</p>
+                </div>
+            </div>
+
+            <p class="editProfile" routerLink="edit-profile">Edit profile</p>
+        </div>
+        <div class="buyXP">
+            <div class="buyXP-header">
+                <p class="buyXP-title">XP Purchase</p>
+                <p style="color: gray">{{currentUser.xp_purchase}} Available</p>
+            </div>
+            <button class="buyXp--Button" mat-flat-button>Buy more
+                <div class="infoIcon">
+                    <img 
+                    matTooltipPosition="right"
+                    [matTooltip]="'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, 
+                    sapiente reiciendis mollitia voluptatum asperiores.'" 
+                    style="width: 20px;" src="https://img.icons8.com/material-two-tone/26/000000/info--v2.png">
+                </div> 
+            </button>
+        </div>
+    </div>
+
+    <div class="interests">
+        <p class="profile-details-title">Your interests</p>
+        <p style="color: gray">Add interests so we can recommend the best activities for you</p>
+        <hr>
+        <div class="user-interests">
+            <div class="user-interests-name" *ngFor="let category of userInterests">
+                <p>{{category.name}}</p>
+                <mat-icon (click)="removeInterest(category.id)">close</mat-icon>
+            </div>
+        </div>
+        <p class="profile-details-title">Add interests</p>
+
+        <hr>
+        <div class="user-interests" style="margin: 0">
+            <div class="user-interests-name" style="cursor: pointer" *ngFor="let category of availableInterests"
+                 (click)="addInterest(category.id)">
+                <p>{{category.name}}</p>
+                <mat-icon>add_circle</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

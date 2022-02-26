@@ -1,0 +1,20 @@
+<div class="mainContent">
+    <div class="settingsHolder">
+      <div  class="iconsHolder"><span>Date</span></div>
+      <div  class="iconsHolder"><span>Reference</span></div>
+      <div  class="iconsHolder"><span>Document number</span></div>
+      <div class="iconsHolder">
+          <span>Price</span>
+      </div>
+    </div>
+    <div class="settingsHolder receipts" *ngIf="receipts">
+        <div  class="iconsHolder"><span>{{ receipts.date }}</span></div>
+        <div  class="iconsHolder"><span>{{ receipts.reference | titlecase}}</span></div>
+        <div  class="iconsHolder"><span>20190151345</span></div>
+        <div class="iconsHolder">
+            <span>CHF 0</span>
+            <span><i class="material-icons">remove_red_eye</i></span>
+            <span><i class="material-icons">save_alt</i></span>
+        </div>
+    </div>
+</div>

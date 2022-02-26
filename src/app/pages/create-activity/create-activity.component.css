@@ -1,0 +1,277 @@
+.mat-stepper-horizontal {
+    background-color: #0f0d15;
+    color: white;
+}
+
+.stepContent {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createActivityButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+mat-form-field {
+    padding: 0;
+}
+
+mat-hint {
+    color: rgba(255, 255, 255, 0.51)!important;
+}
+
+/* =========== STEP 1 =========== */
+
+.formHolder {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.category {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.subCategory {
+    width: 200px;
+}
+
+.chooseCategory {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dateHolder {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.startDateContent {
+    display: flex;
+    align-items: center;
+}
+
+.endDateContent {
+    display: flex;
+    align-items: center;
+}
+
+.dateContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dateContent mat-form-field {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.border {
+    border-left: 1px solid rgba(255, 255, 255, 0.13);
+    height: 90px;
+    margin: 0 20px;
+}
+
+.timeContent {
+    display: flex;
+    align-items: center;
+}
+
+.timeContent input {
+    color: rgba(255, 255, 255, 0.51);
+    font-size: 16px;
+    background-color: #0e0d15;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 7px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.dateTitle {
+    color: white;
+    margin: 12px 0 15px 0;
+    font-weight: 700;
+}
+
+
+/* =========== STEP 2 =========== */
+
+
+.uploadContent {
+    display: flex;
+    height: 400px;
+}
+
+.upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 630px;
+    height: 330px;
+    border: 1px dashed rgba(255, 255, 255, 0.51);
+    border-radius: 20px;
+}
+
+.upload p {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.51);
+}
+
+.uploadButtons {
+    display: flex;
+    flex-direction: column;
+}
+
+.uploadButtons button {
+    margin: 10px 30px;
+    text-align: left;
+}
+
+/* =========== STEP 3 =========== */
+
+.privacy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.privacyText {
+    color: rgba(255, 255, 255, 0.51);
+}
+
+.buyXp {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+.buyXp--Button {
+    width: 80px;
+    font-weight: 600;
+}
+
+.buyXp--Button a{
+    text-decoration: none;
+}
+
+.buyXp--Button a:active{
+    color: #0e0d15;
+}
+
+.availableXp {
+    color: rgba(255, 255, 255, 0.51);
+    margin-left: 20px;
+}
+
+.availableXp span {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+}
+
+.error {
+    font-size: 12px;
+    color: #f44336;
+    margin-top: -13px;
+}
+
+.repetitive-Activity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.repetitive-Activity-Days {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+#repetitive {
+    display: flex;
+    align-items: center;
+}
+.repetitive-Activity-checkbox {
+    margin-right: 20px;
+}
+.repeat-activity-card {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 15px #000;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .stepContent {
+        width: 100%;
+    }
+
+    .formHolder {
+        width: 100%;
+    }
+
+    .dateHolder {
+        flex-direction: column;
+    }
+
+    .border {
+        display: none;
+    }
+ 
+}
+
+@media (max-width: 530px) {
+
+}
+
+
+@media (max-width: 320px) {
+ 
+}
+
+
+
+
+
+
+
+
+
+
+

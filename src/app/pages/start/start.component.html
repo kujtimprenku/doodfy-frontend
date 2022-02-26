@@ -1,0 +1,17 @@
+<p *ngIf="activities" class="pageTitle" style="margin-left: 3px">Recommended</p>
+<app-on-load *ngIf="!activities"></app-on-load>
+<app-activity-card
+        [activity]="activities"
+        *ngIf="activities"></app-activity-card>
+
+<hr class="neonDivider" *ngIf="places?.length > 0">
+<p *ngIf="places?.length > 0" class="pageTitle" style="margin-left: 3px">Places nearby</p>
+    <app-place-card [places]="places" ></app-place-card>
+
+<hr class="neonDivider">
+
+<p *ngIf="companies?.length > 0" class="pageTitle" style="margin-left: 3px; margin-top: 20px">Companies nearby</p>
+<app-company-card
+        [companies]="companies"
+        *ngIf="companies">
+</app-company-card>

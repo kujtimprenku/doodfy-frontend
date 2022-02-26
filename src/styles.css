@@ -1,0 +1,325 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ngx-smart-modal/ngx-smart-modal.css";
+
+
+html {
+    font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
+    /*font-family: Roboto,"Helvetica Neue",sans-serif;*/
+}
+
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+
+    outline: none;
+}
+
+body {
+    background-color: #0e0d15;
+    color: #fff;
+}
+
+body * {
+    outline: none;
+    /* color: white; */
+}
+
+.white {
+    color: #fff;
+}
+
+.gray {
+    color: #ffffffb3;
+}
+
+/*========ANGULAR MATERIAL========*/
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-input-element:disabled {
+    color: #ffffff8f;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+.mat-flat-button.mat-warn[disabled], .mat-flat-button[disabled][disabled] {
+    background-color: #555555;
+    color: white;
+    cursor: not-allowed;
+}
+
+.mat-select-value, .mat-select-arrow, .mat-form-field-label {
+    color: white !important;
+}
+
+
+.mat-input-element {
+    caret-color: white;
+}
+
+.mat-radio-outer-circle {
+    border-color: white;
+}
+
+.mat-form-field-underline {
+    background-color: white !important;
+}
+
+.mat-form-field-ripple {
+    background-color: #e5125e !important;
+}
+
+.navDropdown {
+    color: #555555;
+    width: 300px;
+    padding: 10px 20px;
+    height: 400px;
+}
+
+
+.mat-horizontal-content-container {
+    padding: 30px 115px 0 115px !important;
+}
+
+.mat-horizontal-stepper-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-horizontal-stepper-header-container {
+    width: 90%;
+    margin: auto;
+}
+
+.uploadButtons .mat-button-wrapper {
+    justify-content: flex-start;
+}
+
+.mat-slide-toggle-bar {
+    background-color: rgba(255, 255, 255, 0.38)
+}
+
+.editForm .mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.editForm .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.51) !important;
+}
+
+
+.mat-horizontal-content-container .mat-form-field-underline {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.mat-horizontal-content-container .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.51) !important;
+}
+
+.mat-step-label {
+    color: #d7d7d7 !important;
+}
+
+.mat-step-label-active {
+    color: white !important;
+}
+
+.mat-step-icon {
+    background-color: rgb(64, 63, 63) !important;
+}
+
+.mat-step-icon-selected {
+    background-color: #e5125e !important;
+}
+
+.mat-stepper-horizontal-line {
+    border-top-color: rgba(255, 255, 255, 0.11);
+}
+
+.mat-step-icon-state-edit {
+    background-color: #e5125e !important;
+}
+
+.dateContent .mat-icon-button {
+    color: white !important;
+}
+
+.date-filters .mat-icon-button {
+    color: white !important;
+}
+/*================= Progress bar ========================*/
+
+.mat-progress-bar.mat-warn .mat-progress-bar-fill::after {
+    background: linear-gradient(90deg, rgba(240, 72, 140, 1), rgba(87, 158, 255, 1) 70%);
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar-buffer {
+    background-color: #ffffff;
+}
+
+.mat-progress-bar {
+    height: 2px !important;
+}
+
+/*================= Message TextArea ========================*/
+
+
+.messageInput .mat-form-field-underline {
+    background-color: #1f1d25 !important;
+}
+
+.messageInput .mat-form-field-ripple {
+    background-color: #44424b !important;
+}
+
+.messageInput .mat-form-field-label {
+    color: #515154 !important;
+}
+
+.messageInput .mat-input-element {
+    caret-color: #1f1d25;
+}
+
+
+/*================= ngxSmartModal ========================*/
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nsm-dialog {
+    max-width: 445px;
+}
+
+
+/*================= OLD DOODFY CSS ========================*/
+/* You can add global styles to this file, and also import other style files */
+
+hr {
+    border: 0.5px solid rgba(255, 255, 255, 0.09);
+    margin: 12px 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+.sideBar mat-icon, .navbarContent mat-icon {
+    display: flex !important;
+    align-items: center;
+}
+
+.mat-button-wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*=======================SCROLLBAR=======================*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #4b4b4b;
+
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.pageTitle {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.pageSubTitle {
+    color: white;
+    margin: 30px 0 15px 0;
+    font-weight: 700;
+}
+
+
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Handle on hover */
+.mat-drawer-inner-container:hover::-webkit-scrollbar-thumb {
+    background: #555 !important;
+}
+
+.mat-tab-body.mat-tab-body-active {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: initial;
+    flex-grow: 1;
+}
+
+.cdk-overlay-container .mat-menu-panel{
+    max-width: 338px!important;
+}
+
+.medium-modal {
+    max-width: 830px;
+}
+
+.medium-modal .nsm-content{
+    max-width: 840px;
+    background-color: #000;
+    padding: 10px;
+}
+
+.notifications-holder .mat-menu-content {
+    min-height: 384px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.repeat-activity-modal {
+    max-width: 840px;
+    border-radius: 2px;
+}
+
+.repeat-activity-modal .nsm-content {
+    padding: 0px;
+    height: 500px;
+}
+.signindropdown {
+    background-color: #0e0d15;
+}
+.sign-in-dropdown .mat-menu-item:hover {
+    background-color: transparent;
+}
+/* CREATE ACTIVITY FORM */
+
+@media (max-width: 730px) {
+    .mat-horizontal-content-container {
+        padding: 30px 30px 0 30px !important;
+    }
+}
+
+

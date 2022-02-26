@@ -1,0 +1,77 @@
+.companyCart {
+    display: flex;
+    width: 344px;
+    height: 230px;
+    margin: 3px !important;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover!important;
+}
+
+.companyInfoWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
+    flex: 1;
+    position: relative;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+}
+.c2 {
+    background: none;
+    margin-top: -60px;
+    width: 80%;
+    cursor: pointer;
+}
+.options {
+    color: rgba(255, 255, 255, 0.7); position: relative; height: 40px; width: 40px; margin-top: -60px; float:right; margin-right: 8px;
+}
+.companyName {
+    font-size: 20px;
+    color: white;
+}
+
+.subscribed {
+    font-size: 13px;
+    color: #bcbbbb;
+}
+
+.cardWraper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1700px) {
+    .companyCart {
+        width: 285px;
+    }
+}
+
+@media (max-width: 1430px) {
+    .companyCart {
+        width: 304px;;
+    }
+}
+
+@media (max-width: 1200px) {
+    .companyCart {
+        width: 343px;
+    }
+}
+
+@media (max-width: 730px) {
+    .companyCart {
+        width: 227px;
+    }
+}
+
+@media (max-width: 530px) {
+    .companyCart {
+        width: 180px;
+    }
+    .companyName {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,7 @@
+.clubContent {
+    display: flex;
+    align-items: center;
+}
+p {
+    color: white;
+}

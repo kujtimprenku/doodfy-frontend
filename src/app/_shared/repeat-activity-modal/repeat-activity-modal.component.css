@@ -1,0 +1,90 @@
+
+.repetitive-activity i {
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.repeat-modal-container {
+    color: #000000;
+}
+
+.repeat-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #eeeef7;
+    font-weight: 600;
+
+}
+
+.repeat-modal-header-left {
+    display: flex;
+}
+
+.repeat-modal-header-right {
+    display: flex;
+    align-items: center
+}
+
+.repeat-modal-header-left p {
+    color: #6b6868;
+    font-weight: 600;
+}
+
+.repeat-modal-content {
+    height: 431px;
+    overflow: auto;
+    padding: 0 10px 10px 10px;
+}
+
+.repeat-activity {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.repeat-activity-title {
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.repeat-activity-title span {
+    color: #ff4c3b;
+    font-size: 14px;
+}
+
+.repeat-activity-date {
+    margin-bottom: 5px;
+}
+
+.repeat-activity-actions {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #9999a1;
+}
+
+.repeat-activity-actions button {
+    background-color: white;
+    color: #9999a1;
+}
+
+.repeat-activity-actions .edit:hover {
+    color: #2d2d2d;
+    cursor: pointer;
+}
+
+.repeat-activity-actions .delete:hover {
+    color: #2d2d2d;
+    cursor: pointer;
+}
+
+.repeat-activity-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}

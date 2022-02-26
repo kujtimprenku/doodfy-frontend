@@ -1,0 +1,31 @@
+<form [formGroup]="editGroupForm" class="formHolder editForm">
+    <mat-form-field>
+        <input matInput formControlName="name" type="text" placeholder="Group Name" required>
+        <mat-error *ngIf="editGroupForm.get('name').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="facebook_url" type="text" placeholder="Facebook">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="instagram_url" type="text" placeholder="Instagram">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="twitter_url" type="text" placeholder="Twitter">
+    </mat-form-field>
+</form>
+
+<p style=" color:grey;">Group Information</p>
+<div style="background-color: white; width: 100%; margin: 10px 0;">
+    <angular-editor [(ngModel)]="description" [config]="config"></angular-editor>
+</div>
+
+<div class="buttonHolder">
+    <div>
+        <button mat-flat-button (click)="fillForm(group)">Reset</button>
+        <button mat-flat-button color="primary" (click)="onSubmit()">Save</button>
+        <mat-spinner *ngIf="pending" color="primary" diameter="34"></mat-spinner>
+    </div>
+    <div>
+        <button mat-flat-button color="warn" (click)="confirmGroupDelete(group.id)">Delete Group</button>
+    </div>
+</div>

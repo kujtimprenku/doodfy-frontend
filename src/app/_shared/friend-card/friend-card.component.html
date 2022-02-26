@@ -1,0 +1,21 @@
+<div class="friendsList gray">
+    <div *ngFor="let user of users" class="friendCard">
+        <div class="profilePhoto" [routerLink]="['/', user.id]" [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+        <p [routerLink]="['/', user.id]">{{user.username}}</p>
+        <p *ngIf="user.friendship === -1 && isAuthenticated" class="friendSearch" (click)="onAddFriend(user)">Add Friend</p>
+        <p *ngIf="user.friendship === 0 && isAuthenticated" class="friendSearch" (click)="onCancelSendFriendRequest(user)">Requested</p>
+        <p *ngIf="user.friendship === 1 && isAuthenticated" class="friendSearch" (click)="onUnfriendUser(user)">Unfriend</p>
+        <p *ngIf="user.friendship === 2 && isAuthenticated" class="friendSearch" (click)="onAcceptFriendRequest(user)">Accept Friend</p>
+        <p *ngIf="!isAuthenticated" class="friendSearch" (click)="getUsername(user.username)" [matMenuTriggerFor]="menu">Add Friend</p>
+    </div>
+</div>
+
+<mat-menu #menu="matMenu">
+    <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+        <h6 style="color: #0e0d15;" mat-menu-item> Want to add {{username | titlecase}} to Friends List?</h6>
+        <h6 style="color: #0e0d15;" mat-menu-item>You need to sign in to add {{username | titlecase}} to Friends.</h6>
+        <div mat-menu-item>
+            <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+        </div>
+    </div>
+</mat-menu>

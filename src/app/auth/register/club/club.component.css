@@ -1,0 +1,87 @@
+.formGroup {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.incorrectMessage {
+    color: #f44336;
+    height: 15px;
+    font-size: 13px;
+}
+
+mat-form-field {
+    padding: 5px 0;
+}
+
+.placeHolder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.placeHolder mat-form-field {
+    width: 160px;
+}
+
+.buttonHolder {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonHolder button {
+    margin: 0 5px;
+}
+
+.errorMessage {
+    font-size: 13px;
+    color: red;
+}
+
+.privacy-message {
+    font-size: 12px;
+    background-color: #3972da;
+    padding: 8px 4px;
+    border-radius: 4px;
+}
+
+.login-mobile {
+    display: none;
+}
+
+@media (max-width: 1650px) {
+    .formGroup {
+        width: 300px;
+        font-size: 13px;
+    }
+
+    .placeHolder mat-form-field {
+        width: 120px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .formGroup {
+        width: 210px;
+    }
+
+    .placeHolder mat-form-field {
+        width: 90px;
+    }
+}
+
+@media (max-width: 730px) {
+    .login-mobile {
+      display: flex;
+      justify-content: center;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    
+    .login-mobile span {
+      color: #E5125E;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  }

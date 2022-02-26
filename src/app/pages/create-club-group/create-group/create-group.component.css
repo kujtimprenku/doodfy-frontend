@@ -1,0 +1,28 @@
+.formHolder {
+    width: 500px;
+}
+
+.submitButton {
+    display: flex;
+    justify-content: flex-end;
+}
+.inviteMembers {
+    display: flex;
+    justify-content: center;
+    align-items: center;margin-top: 20px;
+    width: 500px
+}
+.inivteTitle {
+    width: 130px;
+    font-size: 16px;
+}
+mat-form-field {
+    font-size: 15px;
+}
+@media (max-width: 1650px){
+    .formGroup {
+        width: 400px;
+        font-size: 16px;
+    }
+}
+

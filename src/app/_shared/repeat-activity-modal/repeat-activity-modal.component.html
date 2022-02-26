@@ -1,0 +1,79 @@
+<ngx-smart-modal #repeatedActivtites identifier="repeatedActivtites" [closable]="false"
+                 [customClass]="'nsm-dialog-animation-fade repeat-activity-modal'">
+    <div class="repeat-modal-container">
+        <div class="repeat-modal-header">
+            <div class="repeat-modal-header-left">
+                <p>ACTIVITY CALENDAR</p>
+            </div>
+            <div class="repeat-modal-header-right">
+                <button mat-flat-button
+                        [matTooltip]="'Delete All Events'"
+                        [matTooltipPosition]="'left'"
+                        color="warn"
+                        (click)="deleteAllActivityOccurrences()"
+                        *ngIf="!isLoading && my_activity">
+                    Delete
+                </button>
+                <i (click)="onCloseModal()" style="cursor:pointer; margin-left: 15px;" class="material-icons">clear</i>
+            </div>
+        </div>
+
+        <div class="repeat-modal-content" *ngIf="!isLoading">
+            <div class="repeat-activity" *ngFor="let repeatedActivity of repeatedActivities">
+                <div>
+                    <p class="repeat-activity-title"
+                       [routerLink]="['/activity', repeatedActivity.id]">{{repeatedActivity.title}}
+                        <span *ngIf="!repeatedActivity.is_active">&nbsp;finished</span>
+                    </p>
+                    <p class="repeat-activity-date">{{repeatedActivity.start_date | date: 'EE, MMM d, y'}}</p>
+                    <p>{{repeatedActivity.start_date | date: 'h:mm a'}}
+                        - {{repeatedActivity.end_date | date: 'h:mm a'}}</p>
+                </div>
+                <div class="repeat-activity-actions" *ngIf="repeatedActivity.my_activity">
+                    <button mat-flat-button [disabled]="!repeatedActivity.is_active"
+                            [routerLink]="['/activity', repeatedActivity.id, 'edit']">
+                        <i [matTooltip]="repeatedActivity.is_active ? 'Edit' : 'Edit Disabled'"
+                           [matTooltipPosition]="'left'" class="material-icons edit">edit
+                        </i>
+                    </button>
+                    <button mat-flat-button>
+                        <i [matTooltip]="'Delete'"
+                           [matTooltipPosition]="'left'"
+                           class="material-icons delete" (click)="confirmActivityDelete(repeatedActivity.id)">delete</i>
+                    </button>
+                </div>
+                <div class="repeat-activity-actions" *ngIf="!repeatedActivity.my_activity">
+                    <button mat-flat-button [matMenuTriggerFor]="joinMenu"
+                            *ngIf="!isAuthenticated && repeatedActivity.is_active">
+                        Join
+                    </button>
+
+                    <mat-menu #joinMenu="matMenu">
+                        <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+                            <p mat-menu-item> Want to join to this activity?</p>
+                            <p mat-menu-item>You need to sign in to join to this activity.</p>
+                            <div mat-menu-item>
+                                <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+                            </div>
+                        </div>
+                    </mat-menu>
+                    <button mat-flat-button
+                            *ngIf="!repeatedActivity.has_joined && repeatedActivity.is_active && isAuthenticated"
+                            (click)="onJoinActivity(repeatedActivity)">
+                        {{'Join'}}
+                    </button>
+                    <button mat-flat-button
+                            *ngIf="repeatedActivity.has_joined && repeatedActivity.is_active && isAuthenticated"
+                            (click)="onUnJoinActivity(repeatedActivity)">
+                        {{'Unoin'}}
+                    </button>
+                    <button mat-flat-button disabled
+                            *ngIf="!repeatedActivity.is_active && isAuthenticated">{{'Activity Finished'}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="repeat-activity-spinner" *ngIf="isLoading">
+        <mat-spinner color="warn" diameter="32"></mat-spinner>
+    </div>
+</ngx-smart-modal>

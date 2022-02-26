@@ -1,0 +1,158 @@
+.loadBesideTitle {
+    display: flex;
+    align-items: flex-end;
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-form-field {
+    padding: 10px 0 10px 0;
+}
+
+.buttonHolder {
+    width: 100%;
+    display: flex;
+}
+
+button {
+    width: 100%;
+}
+
+.spinner {
+    margin-left: 15px;
+    width: 34px
+}
+.empty-space {
+    display: none;
+}
+
+.registerTitle {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.incorrectMessage {
+    color: #f44336;
+    height: 15px;
+    font-size: 13px;
+}
+
+.belowLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forgotPassword {
+    color: #fff;
+    cursor: pointer;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.forgotPassword:hover {
+    text-decoration: underline;
+    color: #f44336;
+}
+
+.quote--holder {
+    display: flex;
+    margin-bottom: 35px;
+
+}
+
+.quote--holder p {
+    font-size: 22px;
+    font-weight: 600;
+    background: -webkit-linear-gradient(180deg, #ee3596, #693dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.signup-mobile {
+    display: none;
+}
+
+.logo {
+    display: none;
+}
+
+.formGroup button {
+    width: 50%;
+}
+
+@media (max-width: 1650px) {
+
+    .registerTitle {
+        font-size: 16px;
+    }
+
+    .formGroup {
+        width: 300px;
+        font-size: 13px;
+    }
+
+    .quote--holder p {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 1000px) {
+    /* .formGroup {
+        width: 200px;
+    } */
+}
+
+@media (max-width: 730px) {
+    .quote--holder {
+        width: 100%;
+    }
+
+    .formGroup {
+        width: 100%;
+    }
+
+    .signup-mobile {
+        display: flex;
+        font-size: 14px;
+    }
+
+    .signup-mobile span {
+        color: #E5125E;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    .loadBesideTitle {
+        justify-content: space-between;
+        height: 100px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .empty-space {
+        display: block;
+        width: 34px;
+    }
+}
+
+
+
+
+
+

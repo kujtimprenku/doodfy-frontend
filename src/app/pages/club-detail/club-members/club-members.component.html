@@ -1,0 +1,80 @@
+<div class="club-content-container" >
+    <div class="club-left-content">
+
+        <div *ngIf="club">
+            <p>Admins and Moderators</p>
+            <hr>
+            <div class="group-admin" >
+                <div class="group-admin-img" [routerLink]="['/', club.user.id]">
+                    <img [src]="club.user.profile_image" alt="">
+                    <p style="margin-left: 10px;">{{club.user.username}}</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="club && club.my_group">
+            <p *ngIf="requestedMembers?.length > 0" class="membersTitle">Requested to join</p>
+            <div *ngIf="requestedMembers">
+                <div class="friendsList gray" *ngIf="club.my_group">
+                    <div *ngFor="let user of requestedMembers" class="friendCard">
+                        <div class="profilePhoto" [routerLink]="['/', user.id]"
+                             [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                        <p [routerLink]="['/', user.id]">{{user.username}}</p>
+                        <p *ngIf="user['membership'] == 0" class="friendSearch" (click)='onAddMember(user)'>Accept</p>
+                        <p *ngIf="user['membership'] == 0" class="friendSearch" (click)='onRemoveMember(user)'>
+                            Cancel</p>
+                        <p *ngIf="user['membership'] == 1" class="friendSearch" (click)='onRemoveMember(user)'>
+                            Remove</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="display: flex;height: 75px; align-items: center;">
+            <p class="membersTitle">{{members?.length > 0 ? 'Members' : 'No members'}}</p>
+        </div>
+
+        <div *ngIf="members">
+            <div class="friendsList gray">
+                <div *ngFor="let user of members" class="friendCard">
+                    <div class="profilePhoto" [routerLink]="['/', user.id]"
+                         [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                    <p [routerLink]="['/', user.id]">{{user.username}}</p>
+                    <p *ngIf="user['membership'] == 0 && club.my_group" class="friendSearch"
+                       (click)='onAddMember(user)'>
+                        Accept</p>
+                    <p *ngIf="user['membership'] == 0 && club.my_group" class="friendSearch"
+                       (click)='onRemoveMember(user)'>
+                        Cancel</p>
+                    <p *ngIf="user['membership'] == 1 && club.my_group" class="friendSearch"
+                       (click)='onRemoveMember(user)'>
+                        Remove</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="invite-members">
+        <mat-card class="example-form">
+            <p class="invite-members-title">INVITE MEMBERS</p>
+            <form class="editForm">
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Enter friend's name" aria-label="Number" matInput
+                           [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of filteredOptions | async" [value]="user.username" (click)="onInviteFriend(user)">
+                            <div class="user-holder">
+                                <div class="image-and-username">
+                                    <img [src]="user.profile_image" alt="">
+                                    <p>{{user.username}}</p>
+                                </div>
+                                <button mat-button color="primary" [disabled]="user['is_invited'] || user['membership'] === 1" >
+                                    Invite
+                                </button>
+                            </div>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </mat-card>
+    </div>
+</div>

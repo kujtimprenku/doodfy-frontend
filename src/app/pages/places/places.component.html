@@ -1,0 +1,77 @@
+<div *ngIf="place">
+    <div class="coverPhoto"
+         [ngStyle]="{'background-image': 'url('+place.image+')'}">
+        <div class="gradient">
+            <div class="icons">
+                <div class="icon-c">
+                    <a>
+                        <img src="../../../assets/images/icons/facebook-c.png" alt="Facebook">
+                    </a>
+                </div>
+                <div class="icon-c">
+                    <a>
+                        <img src="../../../assets/images/icons/instagram-c.png" alt="Instagram">
+                    </a>
+                </div>
+                <div class="icon-c">
+                    <a >
+                        <img src="../../../assets/images/icons/twitter-c.png" alt="Twitter">
+                    </a>
+                </div>
+            </div>
+            <p>{{place?.name}}</p>
+            <button style="margin-right:10px" mat-flat-button color="primary" (click)="onCreateActivity()" >Create Activity</button>
+        </div>
+    </div>
+    <div class="mainClass">
+        <div class="general">
+            <h2>{{place?.name}}</h2>
+            <p>{{place?.description}}</p>
+        </div>
+        <div class="additional">
+            <h2>Information</h2>
+            <div class="information">
+                <span>Located in: </span>
+                <div class="info">
+                    <p>{{place?.location}}</p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Address: </span>
+                <div class="info">
+                    <p>{{place.address}}</p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Established: </span>
+                <div class="info">
+                    <p>2000</p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Hours: </span>
+                <div class="info">
+                    <p>Opens: <span> {{place?.start_time | date: 'shortTime'}}</span> til: <span>{{place?.end_time | date: 'shortTime'}}</span></p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Tickets: </span>
+                <div class="info">
+                    <p>$23–28 · mopop.org</p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Architect: </span>
+                <div class="info">
+                    <p>Frank Gehry</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="neonDivider">
+    <div *ngIf="activities?.length !== 0">
+        <p class="pageTitle" style="margin-left: 3px">Activites created on this place</p>
+    </div>
+    <app-activity-card [activity]="activities"></app-activity-card>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="mainContent">
+    <div>
+        <p>What do you want to create:</p>
+    </div>
+    <nav mat-tab-nav-bar [backgroundColor]="'transparent'" >
+        <a mat-tab-link style="color: white" (click)="active = 'Club'"  [active]="active == 'Club'" routerLink="/create-club-group" >Club</a>
+        <a mat-tab-link style="color: white" (click)="active = 'Group'" [active]="active == 'Group'"  routerLink="group"> Group </a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+

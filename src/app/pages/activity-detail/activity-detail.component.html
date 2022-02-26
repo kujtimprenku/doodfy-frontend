@@ -1,0 +1,429 @@
+<div class="activityDetail">
+    <div class="leftContent">
+        <div class="mainInfo">
+            <div class="activityImage" [ngStyle]="{'background-image': 'url('+activity.image+')'}">
+                <div class="gradient">
+                    <div class="icons">
+                        <img *ngIf="!isAuthenticated" [matMenuTriggerFor]="menu" style="cursor: pointer"
+                             src="../../../assets/images/icons/save.png" alt="Save"/>
+                        <img *ngIf="isAuthenticated" style="cursor: pointer"
+                             [src]="activity.has_saved ? '../../../assets/images/icons/saved.png' : '../../../assets/images/icons/save.png'"
+                             alt="Save"
+                             (click)="activity.has_saved ? onUnSaveActivity(activity.id) : onSaveActivity(activity)">
+                        <img style="cursor: pointer; margin-left: 10px;" src="../../../assets/images/icons/share.png"
+                             alt="Share" (click)="onOpenModal()">
+                    </div>
+
+                    <mat-menu #menu="matMenu">
+                        <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+                            <p mat-menu-item> Want to save to this activity?</p>
+                            <p mat-menu-item>You need to sign in to save to this activity.</p>
+                            <div mat-menu-item>
+                                <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+                            </div>
+                        </div>
+                    </mat-menu>
+                    <div class="activity-details">
+                        <div class="activity-details-left">
+                            <p>Location</p>
+                            <p>Date</p>
+                            <p>Joined</p>
+                            <p>Creator</p>
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <p>{{ activity.location }}</p>
+                            <p>{{ activity.start_date}}</p>
+                            <p>
+                                <span>{{ activity.nr_joined }}</span>/<span
+                                    *ngIf="activity.max_persons">{{ activity.max_persons }}</span>
+                                <span *ngIf="activity.max_persons == null">&#8734;</span>
+                            </p>
+                            <a style="color: white; text-decoration: none;"
+                               [routerLink]="['/' + activity.user.id]">{{ activity.user.username }}</a>
+                        </div>
+                    </div>
+                    <div *ngIf="!isAuthenticated">
+                        <button
+                                [matMenuTriggerFor]="menu"
+                                mat-flat-button color="accent"
+                                class="join-button"
+                                style="background-color: #E5125E;"
+                        >
+                            <img style="margin-right: 10px;"
+                                 src="../../../assets/images/icons/join.png" alt="Join Activity">
+                            {{'Join'}}
+                        </button>
+
+                        <mat-menu #menu="matMenu">
+                            <div class="sign-in-dropdown">
+                                <p mat-menu-item> Want to join to this activity?</p>
+                                <p mat-menu-item>You need to sign in to join to this activity.</p>
+                                <div mat-menu-item>
+                                    <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+                                </div>
+                            </div>
+                        </mat-menu>
+                    </div>
+
+                    <button
+
+                            mat-flat-button color="accent" class="join-button" [disabled]="buttonDisable"
+                            [ngStyle]="{'background-color': buttonColor}"
+                            *ngIf="!activity.my_activity && isAuthenticated"
+                            (click)="activity.has_joined ? onUnJoinActivity(activity.id) : onJoinActivity(activity.id)">
+                        <img *ngIf="activity.is_active" style="margin-right: 10px;"
+                             [src]="activity.has_joined ? '../../../assets/images/icons/unjoin.png' : '../../../assets/images/icons/join.png'"
+                             alt="">
+                        {{buttonText}}
+                    </button>
+                    <div style="display: flex;align-items: center" *ngIf="activity.my_activity">
+                        <button mat-flat-button class="join-button" [matMenuTriggerFor]="settingsMenu">
+                            Options
+                        </button>
+                        <mat-menu #settingsMenu="matMenu" xPosition="before">
+                            <div class="crudActivityButtons" *ngIf="activity.my_activity">
+                                <button mat-menu-item style="border-bottom: 1px solid lightgrey"
+                                        [disabled]="!activity.is_active"
+                                        routerLink="edit">{{activity.is_active ? 'Edit' : 'Finished'}}</button>
+                                <button mat-menu-item style="border-top: 1px solid lightgrey"
+                                        (click)="duplicateActivity(activity.id)">Duplicate
+                                </button>
+                                <button mat-menu-item style="border-top: 1px solid lightgrey"
+                                        (click)="confirmActivityDelete(activity.id)">Delete
+                                </button>
+                            </div>
+                        </mat-menu>
+                        <p class="mobile-hide" *ngIf="activity.my_activity">&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+            <div class="activity-details-mobile">
+                <div class="activity-details-left-mobile">
+                    <p>Location</p>
+                    <p>Date</p>
+                    <p>Joined</p>
+                    <p>Creator</p>
+                </div>
+                <div style="margin-left: 10px;">
+                    <p>{{ activity.city.name }}{{ activity.location }}</p>
+                    <p>{{ activity.start_date}}</p>
+                    <p>
+                        <span>{{ activity.nr_joined }}</span>/<span
+                            *ngIf="activity.max_persons">{{ activity.max_persons }}</span>
+                        <span *ngIf="activity.max_persons == null">&#8734;</span>
+                    </p>
+                    <a style="color: white; text-decoration: none;"
+                       [routerLink]="['/' + activity.user.id]">{{ activity.user.username }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="descriptionHolder">
+            <div class="descriptionCard">
+                <div class="subcategory-and-repeat-button">
+                    <p class="subcateogry-name">{{activity.subcategory.name}}</p>
+                    <div *ngIf="activity['nr_occurrences'] > 0" class="repetitive-activity"
+                         (click)="onOpenRepetitiveModal(activity['parent_id'])">
+                        <p style="cursor: pointer;">Occurrences ({{activity['nr_occurrences']}})</p><i class="material-icons">sync</i>
+                    </div>
+                </div>
+                <p class="activity-title">{{activity.title}}</p>
+                <div [ngClass]="(seeMore || descriptionHeight < 150) ? '' : 'description'">
+                    <p class="fontStyle" #description style="white-space: pre-wrap">{{ activity.description }}</p>
+                </div>
+                <p *ngIf="descriptionHeight > 150" class="see-more"
+                   (click)="seeMore = !seeMore">{{seeMore ? 'See less' : 'See more'}}</p>
+            </div>
+
+            <hr/>
+            <div class="categories">
+                <p class="categories-title">{{activity.category.length > 1 ? 'Categories' : 'Category'}} </p>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip
+                            *ngFor="let category of activity.category">
+                        <p style="cursor: pointer;" (click)="onFilterWithCategory(category)">{{category.name}}</p>
+                        <mat-icon
+                                *ngIf="isAuthenticated"
+                                matChipRemove
+                                matTooltipPosition="above"
+                                [matTooltip]="category.has_favorite ? 'Remove From Favorites' : 'Add To Favorites'"
+                                (click)="category.has_favorite ? onRemoveCategoryFromFavorites(category.id) : onAddCategoryToFavorites(category.id)"
+                        >{{category.has_favorite ? 'cancel' : 'add_circle_outline'}}</mat-icon>
+
+                        <mat-icon
+                                *ngIf="!isAuthenticated"
+                                matChipRemove
+                                matTooltipPosition="above"
+                                [matTooltip]="'Sign in to add category to favorites'">
+                            add_circle_outlinef
+                        </mat-icon>
+
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <div class="loaction-map">
+                <iframe width="100%" height="350" frameborder="0" style="border:2px"
+                        [src]="activityLocation | safeUrl" allowfullscreen></iframe>
+            </div>
+            <p class="categories-title " style="padding: 30px 10px 0 0" *ngIf="galleryPending">
+                Gallery {{images.length > 0 ? '(' + images.length + ')' : ''}}</p>
+            <div style="display: flex;justify-content: center;align-items: center">
+                <mat-spinner class="spinner" *ngIf="!galleryPending" color="warn" diameter="32"
+                             style="margin-top: 30px"></mat-spinner>
+            </div>
+
+            <div *ngIf="galleryPending" class="gallery-thumbnail-container">
+                <div class="gallery-thumbnail-wrapper"
+                     [ngStyle]="{'height': showAllGalleryImages || images.length < 14 ? 'auto' : '200px', 'overflow': showAllGalleryImages ? 'hidden' : 'hidden'}">
+                    <div class="gallery-thumbnail-img" *ngFor='let image of images ; let id = index'>
+                        <div class="galleryHolder" [ngStyle]="{'background-image': 'url('+ image.image +')'}"
+                             (click)="onOpenGalleryModal(id)"></div>
+                        <span class="material-icons deleteButton" *ngIf="activity.my_activity || image.my_image"
+                              (click)="onDeleteImage(image)">clear</span>
+                    </div>
+                    <div class="gallery-thumbnail-img" *ngFor="let url of urls; let id = index">
+                        <div class="galleryHolder" [ngStyle]="{'background-image': 'url('+ url +')'}"
+                             (click)="onOpenGalleryModal(id + images.length)"></div>
+                        <span class="material-icons deleteButton" (click)="onDeleteUploadedImage(id)">clear</span>
+                    </div>
+                </div>
+                <div *ngIf="activity.has_joined || activity.my_activity">
+                    <input type='file' accept="image/*" style="display: none" #fileInput (change)="onSelectFile($event)"
+                           multiple>
+                    <div class="upload-image-container">
+                        <div>
+                            <button type="button" (click)="fileInput.click()" mat-button color="accent">Upload Image
+                            </button>
+                            <div *ngIf="!savePending">
+                                <button type="button" (click)="onSaveImages()" *ngIf="urls.length != urlsIndex"
+                                        mat-button color="primary">Save
+                                </button>
+                            </div>
+                            <mat-spinner class="spinner" *ngIf="savePending" color="warn" diameter="32"></mat-spinner>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button *ngIf="images?.length > 14" class="show-more-button" (click)="showAllGalleryImages = !showAllGalleryImages"
+                    mat-flat-button>
+                {{showAllGalleryImages ? 'SHOW LESS' : 'SHOW MORE'}}
+            </button>
+        </div>
+    </div>
+
+    <div class="rightContent">
+        <div class="usersHolder-header">
+            <p class="cardTitle">Joined &nbsp;
+                <span style="color: white">{{ activity.nr_joined }}/</span>
+                <span style="color: white" *ngIf="activity.max_persons">{{activity.max_persons}}</span>
+                <span style="color: white; font-size: 22px;" *ngIf="activity.max_persons == null">&#8734;</span>
+            </p>
+            <p class="cardTitle" style="cursor: pointer;"
+               *ngIf="activity.my_activity && activity.has_xp && activity.users.length > 0"
+               (click)="onOpenXpModal()">Dispense XP
+            </p>
+            <p class="cardTitle" *ngIf="!activity.my_activity">Experience Points
+            </p>
+        </div>
+        <div class="usersHolder">
+
+            <div class="usersJoined">
+                <div class="userJoined"
+                     *ngFor="let user of activity.users">
+                    <div [routerLink]="['/' + user.id]">
+                        <div class="profilePhoto" [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                        <p>{{ user.username }}</p>
+                    </div>
+                    <button class="xp-points-button"
+                            *ngIf="activity.my_activity && activity.has_xp && user.given_xp"
+                            mat-flat-button>+1xp
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="commentsHolder white">
+            <p class="cardTitle">Comments</p>
+            <form [formGroup]="commentForm" (keydown.enter)="onSubmit(); false">
+                <mat-form-field>
+                    <mat-label>{{isAuthenticated ? 'Write a comment...' : 'Sign in to comment...'}}</mat-label>
+                    <textarea
+                        #comment
+                        formControlName="comment"
+                        maxlength="256"
+                        matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="0"
+                        spellcheck="false"
+                        cdkAutosizeMaxRows="4"
+                    ></textarea>
+                    <mat-hint align="end">{{ comment.value.length }} / 256</mat-hint>
+                </mat-form-field>
+
+            </form>
+            <div class="comment white" *ngFor="let comment of comments">
+                <div class="commentAuthor">
+                    <div [routerLink]="['/' + comment.user.id]">
+                        <img [src]="[comment.user.profile_image]" alt=""/>
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 6px; cursor: pointer" [routerLink]="['/' + comment.user.id]">
+                            {{comment.user.username}} <span class="fontStyle">{{comment.created_at | timeAgo}}</span>
+                        </p>
+                        <p class="fontStyle" style="white-space: pre-line">
+                            {{comment.comment}}
+                        </p>
+                    </div>
+                </div>
+                <mat-icon *ngIf="comment.my_comment" (click)="deleteComment(comment.id)" class="gray">clear</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-smart-modal #myModal identifier="myModal">
+    <div class="inviteModal">
+        <div class="inviteModal-header">
+            <h3>Share</h3>
+            <hr class="neonDivider">
+        </div>
+        <div class="socialIcons">
+            <div><img src="../../../assets/images/icons/facebook.png" alt="facebook"></div>
+            <p>Facebook</p>
+        </div>
+        <div class="socialIcons">
+            <img src="../../../assets/images/icons/twitter.png" alt="facebook">
+            <p>Twitter</p>
+        </div>
+        <div class="socialIcons">
+            <img src="../../../assets/images/icons/whatsapp.png" alt="facebook">
+            <p>WhatsApp</p>
+        </div>
+        <div class="socialIcons" (click)="linkCopied()" ngxClipboard [cbContent]="getLocationHref()">
+            <img src="../../../assets/images/icons/copylink.png" alt="facebook">
+            <p>Copy Link</p>
+        </div>
+        <div class="socialIcons" (click)="onOpenFriendsModal()" *ngIf="isAuthenticated">
+            <img src="../../../assets/images/icons/friends.png" alt="facebook">
+            <p>Invite Friends</p>
+        </div>
+        <div class="share-modal-cancel-button">
+            <button class="cancelButton" (click)="onCloseModal()" mat-menu-item>
+                <span>Cancel</span>
+            </button>
+        </div>
+
+    </div>
+</ngx-smart-modal>
+
+
+<ngx-smart-modal #inviteFriendsModal identifier="inviteFriendsModal">
+    <div class="inviteModal" *ngIf="inviteFriendsModal">
+        <h3 style="text-align: center;">Invite Friends</h3>
+        <div *ngIf="myFriends.length === 0" class="spinner">
+            <mat-spinner class="spinner" *ngIf="pending" color="warn" diameter="32"></mat-spinner>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <button mat-flat-button color="warn" (click)="onInviteAllFriends(activity.id)">Invite All</button>
+        </div>
+        <div *ngIf="myFriends.length > 0" class="inviteModal-friends">
+            <div class="inviteModal-content" *ngFor="let friend of myFriends">
+                <div class="inviteModal-friends-detail">
+                    <div class="profilePhoto" [ngStyle]="{'background-image': 'url('+friend.profile_image+')'}"></div>
+                    <p>{{ friend.username }}</p>
+                </div>
+                <button *ngIf="friend['has_joined']" mat-button [disabled]="friend['invited'] || friend['has_joined']"
+                        color="primary"
+                >Joined
+                </button>
+                <button *ngIf="!friend['has_joined']" mat-button [disabled]="friend['invited'] || friend['has_joined']"
+                        color="primary"
+                        (click)="onInviteSpecificFriend(activity.id, friend.id)">{{friend['invited'] ? 'Invited' : 'Invite'}}
+                </button>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button style="background-color: #ABAFB1; color: white;" mat-flat-button color="accent"
+                    (click)="onCloseModal()">Close
+            </button>
+        </div>
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal #xpModal identifier="xpModal">
+    <div class="inviteModal">
+        <div class="inviteModal-header">
+            <h3>Dispense Xperience Points</h3>
+            <hr class="neonDivider">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <button mat-button color="primary"
+                    [disabled]="disableGiveXpToAllButton || !activity['allow_xp']"
+                    class="xp-modal-button"
+                    style="margin-right: 17px; min-width: 78px;"
+                    (click)="onGiveAllXp(activity.id, activity.users)">all +1
+            </button>
+        </div>
+        <div *ngIf="activity.users.length > 0" class="inviteModal-friends">
+            <div class="inviteModal-content" *ngFor="let user of activity.users">
+                <div class="inviteModal-friends-detail">
+                    <div class="profilePhoto" [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                    <p>{{ user.username }}</p>
+                </div>
+                <button mat-button [disabled]="(user.given_xp || disableGiveXpToAllButton) || !activity['allow_xp']"
+                        color="primary"
+                        [ngClass]="(user.given_xp) ? 'xp-modal-button-active' : 'xp-modal-button'"
+                        *ngIf="!user['has_joined']"
+                        (click)="onGiveXp(user.id, activity.id, activity.subcategory.id)">+ 1 XP
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="xp-modal-bottom">
+        <button *ngIf="currentUser?.xp_points > 0" class="xp-left-button" mat-flat-button>{{currentUser?.xp_points}} XP
+            left
+        </button>
+        <button [routerLink]="['/account']" routerLinkActive="router-link-active" *ngIf="currentUser?.xp_points == 0"
+                class="xp-left-button" mat-flat-button>Buy more XP
+        </button>
+        <button class="xp-cancel-button" mat-flat-button (click)="onCloseModal()">Close</button>
+    </div>
+
+</ngx-smart-modal>
+
+<!--Gallery Modal-->
+<ngx-smart-modal #galleryModal identifier="galleryModal" [customClass]="'nsm-dialog-animation-fade medium-modal'"
+                 [closable]="false">
+    <div class="galleryM">
+        <div class="gallery-header">
+            <div style="width: 20px;"></div>
+            <h3 style="color: #E5125E; font-weight: 600;">{{activity.title}}</h3>
+            <i (click)="onCloseModal()" style="cursor:pointer; color: white;" class="material-icons">clear</i>
+        </div>
+        <div class="spinner" *ngIf="!largeImages" style="height: 100%;">
+            <mat-spinner class="spinner" color="warn" diameter="32"></mat-spinner>
+        </div>
+        <div class="gallery-image-holder" *ngIf="largeImages">
+            <div *ngFor='let image of largeImages' class="gallery-image"
+                 [ngStyle]="{'background-image': 'url('+ image.image +')'}">
+                <div class="gradientGallery" #target>
+                    <p class="image-User-Info" style="padding: 10px 0 10px 10px">
+                        Posted by: <span [routerLink]="['/',image.user.id]"
+                                         style="cursor:pointer"> {{image.my_image ? 'You' : image.user.username}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ngx-smart-modal>
+
+<app-repeat-activity-modal
+        [repeatedActivities]="repeatedActivities"
+        [isLoading]="isLoading"
+        [my_activity]="activity.my_activity"
+        [parent_id]="parent_id"
+></app-repeat-activity-modal>

@@ -1,0 +1,107 @@
+.chatContainer {
+    display: flex;
+    height: 85vh;
+}
+
+.chatUsers {
+    color: #d7d7d7;
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    background-color: #1f1d25;
+}
+
+.chatWindow {
+    display: flex;
+    flex-direction: column;
+    width: 920px;
+    background-color: #d7d7d7;
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    font-weight: 700;
+    color: #d7d7d7;
+}
+
+.usersHolder {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 12px 20px;
+}
+
+.user:hover {
+    background-color: #44424b;
+    cursor: pointer;
+}
+
+.chattingWith {
+    background-color: #44424b;
+}
+
+.profilePhoto {
+    margin-right: 15px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.chatInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.settings {
+    visibility: hidden;
+}
+
+.user:hover .settings {
+    visibility: visible;
+    font-size: 18px;
+}
+
+
+.userName {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.messageTime {
+    font-size: 12px;
+    color: #7d7d7d;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+
+.lastMessage {
+    font-size: 14px;
+    color: #7d7d7d;
+}
+
+.timeSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+
+
+
+
+
+

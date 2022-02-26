@@ -1,0 +1,115 @@
+<div class="profilePage">
+    <div class="profileAside">
+        <div class="mobileProfile">
+            <div class="mobileUser">
+                <div class="photo" [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                <div class="mobileDetail">
+                    <p class="username">{{user.username | titlecase}}</p>
+                    <p *ngIf="value === 3" class="editProfile" routerLink="/account/edit-profile">Edit profile</p>
+                    <div class="friendsButton" *ngIf="value != 3 && isAuthenticated">
+                        <div [ngSwitch]="value">
+                            <p *ngSwitchCase="-1" class="friendSearch" (click)="onAddFriend()">Add Friend</p>
+                            <p *ngSwitchCase="0" class="friendSearch" (click)="onCancelSendFriendRequest()">
+                                Requested</p>
+                            <p *ngSwitchCase="1" class="friendSearch" (click)="onUnfriendUser()">Unfriend</p>
+                            <p *ngSwitchCase="2" class="friendSearch" (click)="onAcceptFriendRequest()">Accept
+                                Friend</p>
+                        </div>
+                    </div>
+
+                    <div class="friendsButton" *ngIf="!isAuthenticated">
+                        <div>
+                            <p class="friendSearch" [matMenuTriggerFor]="menu">Add Friend</p>
+                        </div>
+                    </div>
+                    <mat-menu #menu="matMenu">
+
+                        <div class="sign-in-dropdown" *ngIf="!isAuthenticated">
+                            <p style="color: #0e0d15;" mat-menu-item> Want to add {{user.username | titlecase}} to Friends List?</p>
+                            <p style="color: #0e0d15;" mat-menu-item>You need to sign in to add {{user.username | titlecase}} to Friends.</p>
+                            <div mat-menu-item>
+                                <button routerLink="/login" mat-flat-button color="primary">Sign In</button>
+                            </div>
+                        </div>
+                    </mat-menu>
+                </div>
+            </div>
+
+            <div class="mobileLevel">
+                <p style="font-size: 15px;color: #909090">LEVEL</p>
+                <span style="font-size: 40px;font-weight: bold">1</span>
+                <p style="font-size: 15px; color: #909090">XP {{user.xp_points}}</p>
+            </div>
+        </div>
+        <div>
+            <div class="biography">
+                <p style="white-space: pre-line">{{user.biography}}</p>
+            </div>
+            <div class="social-media">
+                <a *ngIf="user.facebook_url" [href]="user.facebook_url" target="_blank"><img
+                        src="../../../assets/images/icons/facebook-c.png" alt="facebook"></a>
+                <a *ngIf="user.instagram_url" [href]="user.instagram_url" target="_blank"><img
+                        src="../../../assets/images/icons/instagram-c.png" alt="instagram"></a>
+                <a *ngIf="user.twitter_url" [href]="user.twitter_url" target="_blank"><img
+                        src="../../../assets/images/icons/twitter-c.png" style="height: 25px;" alt="twitter"></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="profileContent">
+        <div class="profileStats">
+            <div class="statsCard" id="level">
+                <p>LEVEL</p>
+                <span>1</span>
+                <p style="margin-top: 20px;">XP {{user.xp_points}}</p>
+            </div>
+            <div class="statsCard" id="categories">
+                <p style="margin-bottom: 15px;">TOPIC ACTIVITY</p>
+                <p *ngIf="user.topics['topic_1']" class="firstTopic">{{user.topics['topic_1']}}</p>
+                <p *ngIf="user.topics['topic_2']" class="secondTopic">{{user.topics['topic_2']}}</p>
+                <p *ngIf="user.topics['topic_3']" class="thirdTopic">{{user.topics['topic_3']}}</p>
+            </div>
+            <div class="statsCard" id="createdActivities">
+                <p>ACTIVITIES CREATED</p>
+                <span>{{user.nr_activities}}</span>
+            </div>
+            <div class="statsCard" id="Rating">
+                <p>AVG RATING</p>
+                <span>{{user.rating}}</span>
+            </div>
+        </div>
+        <hr class="neonLines">
+        <div class="profileNavbar">
+            <div class="navLink">
+                <span [routerLink]="['/', user.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Participated</span>
+            </div>
+            <div class="navLink">
+                <span routerLink="created" routerLinkActive="active">Created</span>
+            </div>
+            <div class="navLink">
+                <span routerLink="medals" routerLinkActive="active">Medals</span>
+            </div>
+            <div class="navLink">
+                <span routerLink="friends" routerLinkActive="active">Friends</span>
+            </div>
+            <div class="navLink">
+                <span routerLink="support" routerLinkActive="active">Support</span>
+            </div>
+        </div>
+
+        <select class="navbar-mobile" name="" id="" (change)="navigate($event.target.value, user.id)">
+            <option class="navbar-mobile-item" value="">Participated</option>
+            <option class="navbar-mobile-item" value="created">Created</option>
+            <option class="navbar-mobile-item" value="medals">Medals</option>
+            <option class="navbar-mobile-item" value="friends">Friends</option>
+            <option class="navbar-mobile-item" value="support">Support</option>
+        </select>
+
+        <div class="profileActivities">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+

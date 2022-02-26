@@ -1,0 +1,49 @@
+<div class="activity-container">
+    <div *ngFor="let activity of activities">
+        <div class="activity">
+            <div class="activity-photo-container">
+                <div class="activityPhoto" [routerLink]="['/activity/', activity.id]"
+                     [ngStyle]="{'background-image': 'url('+activity.image+')'}">
+                    <div class="logoHolder" [routerLink]="['/activity/', activity.id]">
+                        <div>
+                            <mat-icon *ngIf="activity.has_joined" class="joinLogo">check_circle</mat-icon>
+                        </div>
+                        <div *ngIf="activity.has_xp" class="xpLogo">
+                            <p>XP</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="activityDetail">
+                <div class="activityDetail-header">
+                    <p class="activityTitle" [routerLink]="['/activity/', activity.id]">{{activity.title}}
+                    <span style="color: #ff4c3b; font-size: 14px" *ngIf="!activity.is_active">&nbsp;finished</span></p>
+                    <mat-icon [matTooltip]="[ ''+ message | titlecase]" (click)="unSave(activity.id)">clear</mat-icon>
+                </div>
+                
+                <div class="info">
+                    <p>Author &bull; {{activity.user.username}}</p>
+                    <p>Location &bull; {{activity.location}}</p>
+                    <p>From &bull; {{activity.start_date}} - {{activity.end_date}}</p>
+    
+                    <div class="activityDescription">
+                        <p>{{ displayDescription(activity.description)}}</p>
+                    </div>
+                </div>
+                <div class="usersJoined">
+                    <div class="userPhoto" *ngFor="let user of activity.users['friends']"
+                         [matTooltip]="''+[user.username | titlecase]"
+                         [ngStyle]="{'background-image': 'url('+user.profile_image+')'}">
+                    </div>
+                    <div class="nrJoins">
+                        <span *ngIf="activity.users['friends'].length !== 0 && activity.users['nr_joins'] !== 0 ">+ {{activity.users['nr_joins']}} going</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    
+</div>

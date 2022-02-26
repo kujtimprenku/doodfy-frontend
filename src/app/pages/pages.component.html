@@ -1,0 +1,428 @@
+<mat-progress-bar *ngIf="showLoading" class="loading" color="warn" mode="indeterminate"></mat-progress-bar>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="example-toolbar">
+        <button mat-icon-button (click)="toggleSidenav()" >
+            <mat-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </mat-icon>
+        </button>
+        <div class="navbarContent" >
+            <div class="navbarContent-logo" [ngClass]=" mobileSearch ?'hide':''">
+                <img routerLink="/start" class="doodfyImage" [src]="['assets/images/logo.png']" alt="logo"
+                     width="120px">
+                <p (click)="openBottomSheet()" class="alpha">&nbsp;alpha</p>
+            </div>
+            
+            <div style="width: 100%; position: relative" class="hideSearch-mobile" [ngClass]="mobileSearch ? 'show': ''">
+                <div class="searchNavbar">
+                    <input [formControl]="search" id="search" (keydown.enter)="onSearch()" type="text" #searchInput
+                           spellcheck="false"
+                           placeholder="Search"
+                           (blur)="mobileSearch = !mobileSearch"
+                           autocomplete="off"
+                           >
+
+                    <button mat-stroked-button (mousedown)="onSearch()">
+                        <mat-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16
+              11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5
+              5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5
+              4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </svg>
+                        </mat-icon>
+                    </button>
+                </div>
+                <div (clickOutside)="showAutocomplete = false" *ngIf="showAutocomplete" class="autocomplete">
+
+                    <div *ngIf="userSearched.length > 0" style="padding:0 10px;">
+                        <p class="title">Users</p>
+                        <p class="suggest" *ngFor="let user of userSearched"
+                            (mousedown)="onSuggestClick(user.username)"
+                           >{{user.username}}</p>
+                    </div>
+
+                    <div *ngIf="companySearched.length > 0" style="padding:0 10px;">
+                        <hr>
+                        <p class="title">Companies</p>
+                        <p class="suggest" *ngFor="let company of companySearched"
+                           (mousedown)="onSuggestClick(company.firm)">{{company.firm}}</p>
+                    </div>
+
+                    <div *ngIf="categorySearched.length > 0" style="padding:0 10px;">
+                        <hr>
+                        <p class="title">Categories</p>
+                        <p class="suggest" *ngFor="let category of categorySearched"
+                           (mousedown)="categoryFilter(category)">{{category.name}}</p>
+                    </div>
+
+                    <div *ngIf="subcategorySearched.length > 0" style="padding:0 10px;">
+                        <hr>
+                        <p class="title">Sub Categories</p>
+                        <p class="suggest" *ngFor="let subcategory of subcategorySearched"
+                           (mousedown)="subcategoryFilter(subcategory)">{{subcategory.name}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbarIcons" [ngClass]=" mobileSearch ?'hide':''" *ngIf="role_id == 1">
+                <div class="activateSearchButton">
+                    <button mat-button
+                    (click)="setFocusOnSearch()" > <mat-icon>search</mat-icon></button>
+                </div>
+                <div>
+                    <button mat-button [matMenuTriggerFor]="friendRequest" (click)="friendHideBadge = true">
+                        <mat-icon
+                                [matBadge]="getFriendRequestNumber()"
+                                matBadgeColor="accent"
+                                [matBadgeHidden]="friendHideBadge"
+                        >group
+                        </mat-icon>
+                    </button>
+                    <mat-menu class="navDropdown" #friendRequest="matMenu" xPosition="before">
+                        <p class="dropdownTitle">Friend Requests</p>
+                        <hr class="dropdownHr">
+                        <div *ngFor="let request of friendRequests" class="friendRequest">
+
+                            <div class="friendRequestDetail" [routerLink]="['/' + request.id]">
+                                <div class="notifyProfileImg"
+                                     [ngStyle]="{'background-image': 'url('+request.profile_image+')'}"></div>
+                                <p style="margin-left: 20px">{{request.username}}</p>
+                            </div>
+                            <div class="friendRequestButtons" style="">
+                                <mat-icon (click)="$event.stopPropagation(); onAcceptFriendRequest(request.id)">done
+                                </mat-icon>
+                                <mat-icon (click)="$event.stopPropagation(); onDenyFriendRequest(request.id)">clear
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </mat-menu>
+                </div>
+                <mat-icon class="chat" matBadgeColor="accent">chat</mat-icon>
+
+                <div>
+                    <button mat-button [matMenuTriggerFor]="notification" (click)="readNotifications()">
+                        <mat-icon
+                                [matBadge]="unreadNotificationsNumber"
+                                [matBadgeHidden]="notificationHideBadge"
+                                matBadgeColor="accent">notifications
+                        </mat-icon>
+                    </button>
+                    <mat-menu class="navDropdown notifications-holder" #notification="matMenu" xPosition="before">
+                        <div>
+                            <p class="dropdownTitle">Notifications</p>
+                            <hr class="dropdownHr">
+                            <div (click)="onNotificationNavigate(invite)" *ngFor="let invite of inviteNotifications" class="inviteNotification">
+                                <div class="inviteNotification-header">
+
+                                    <div class="notifyProfileImg"
+                                         [ngStyle]="{'background-image': 'url('+invite.user.profile_image+')'}">
+                                    </div>
+                                    <div class="invitenotification-details">
+                                        <div style="font-size: 12px;">
+                                            <p class="inviteNotification-header-username">
+                                                <span style="font-weight: bold; cursor: pointer;">{{invite.user.username | titlecase}}</span>
+                                                <span> {{invite['message']}} </span>
+                                            </p>
+                                            <p *ngIf="invite.activity" style="font-weight: 600; cursor: pointer; ">{{ invite.activity.title }}</p>
+                                            <p *ngIf="invite['group']" style="font-weight: 600; cursor: pointer; ">{{ invite['group']['name'] }}</p>
+                                            <div class="invite-created-at">
+                                                <i *ngIf="invite['type'] === 'comment'" class="material-icons">comment</i>
+                                                <i *ngIf="invite['type'] === 'invite'" class="material-icons">group</i>
+                                                <i *ngIf="invite['type'] === 'join'" class="material-icons">group_add</i>
+                                                <i *ngIf="invite['type'] === 'invite_group'" class="material-icons">group_add</i>
+                                                <span>{{invite['created_at'] | timeAgo}}</span>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="invite.activity" class="notification-image"
+                                             [ngStyle]="{'background-image': 'url('+invite.activity.image+')'}">
+                                        </div>
+                                        <div *ngIf="invite['group']" class="notification-image"
+                                             [ngStyle]="{'background-image': 'url('+invite['group']['cover_image']+')'}">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <button class="notification-see-all" mat-stroked-button [routerLink]="['/notifications']" >See All</button>
+                    </mat-menu>
+                </div>
+
+                <div>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <span *ngIf="user" class="profilePhoto"
+                              [ngStyle]="{'background-image': 'url('+photoUrl+')'}"></span>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item [routerLink]="['/' + user?.id]" style="border-bottom: 1px solid lightgrey">Profile</button>
+                        <button mat-menu-item routerLink="/manage" style="border-top: 1px solid lightgrey">Manage Groups</button>
+                        <button mat-menu-item routerLink="/account" style="border-top: 1px solid lightgrey">Account Settings</button>
+                        <button mat-menu-item (click)="logout()" style="border-top: 1px solid lightgrey">Log Out</button>
+                    </mat-menu>
+                </div>
+            </div>
+
+            <div class="navbarIcons" style="width: 120px;" *ngIf="role_id == 2">
+
+
+                <div>
+                    <button mat-button [matMenuTriggerFor]="notification">
+                        <mat-icon
+                                [matBadge]="''"
+                                matBadgeColor="accent">notifications
+                        </mat-icon>
+                    </button>
+                    <mat-menu class="navDropdown" #notification="matMenu" xPosition="before">
+                        <p class="dropdownTitle">Notifications</p>
+                        <hr class="dropdownHr">
+                    </mat-menu>
+                </div>
+
+                <div>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <span *ngIf="user" class="profilePhoto"
+                              [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></span>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item [routerLink]="['/company' , company_id]">Profile</button>
+                        <button mat-menu-item >Account Settings</button>
+                        <button mat-menu-item (click)="logout()">Log Out</button>
+                    </mat-menu>
+                </div>
+            </div>
+
+            <div class="navbarIcons" *ngIf="!isAuthenticated">
+                <button mat-flat-button routerLink="/login">Sign In</button>
+            </div>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-sidenav-container" role="navigation"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav class="sideBar" [opened]="!this.mobileQuery.matches" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+
+            <div class="sideBarContent">
+                <div class="sideBar">
+                    <div *ngIf="role_id == 2">
+                        <div class="sideBarLinks" routerLink="/dashboard" routerLinkActive="sideBarLinksActive"
+                             [routerLinkActiveOptions]="{exact: true}">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Dashboard</span>
+                        </div>
+                        <div class="sideBarLinks" [routerLink]="['/subscribers' , company_id]">
+                            <mat-icon>gps_fixed</mat-icon>
+                            <span> Subscribers</span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="role_id == 1 || !isAuthenticated">
+                        <div  class="sideBarLinks" routerLink="/start" routerLinkActive="sideBarLinksActive"
+                              [routerLinkActiveOptions]="{exact: true}">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Start</span>
+                        </div>
+                        <div class="sideBarLinks" routerLink="/trending"  routerLinkActive="sideBarLinksActive">
+                            <mat-icon>whatshot</mat-icon>
+                            <span> Trending</span>
+                        </div>
+                        <div class="sideBarLinks" routerLink="/explore" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49
+        1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12
+        2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12
+        2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z"></path>
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Explore</span>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div *ngIf="isAuthenticated && role_id == 1">
+                        <div class="sideBarLinks" routerLink="/booked" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Booked</span>
+                        </div>
+<!--                        <div class="sideBarLinks" routerLink="/places" routerLinkActive="sideBarLinksActive">-->
+<!--                            <mat-icon>-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">-->
+<!--                                    <path d="M0 0h24v24H0z" fill="none"></path>-->
+<!--                                    <path-->
+<!--                                            d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"></path>-->
+<!--                                </svg>-->
+<!--                            </mat-icon>-->
+<!--                            <span> Places</span>-->
+<!--                        </div>-->
+                        <div class="sideBarLinks" routerLink="/history" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9
+        12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42
+        1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> History</span>
+                        </div>
+                        <div class="sideBarLinks" routerLink="/saved" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     width="24" height="24"
+                                     viewBox="0 0 24 24">
+                                    <defs>
+                                        <path id="a" d="M0 0h24v24H0V0z"></path>
+                                    </defs>
+                                    <clipPath id="b">
+                                        <use xlink:href="#a" overflow="visible"></use>
+                                    </clipPath>
+                                    <path clip-path="url(#b)"
+                                          d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5
+                       2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Saved</span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="isAuthenticated">
+                        <div class="sideBarLinks" routerLink="/ranklist" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"></path>
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                </svg>
+                            </mat-icon>
+                            <span> Rankings</span>
+                        </div>
+                        <div class="sideBarLinks" routerLink="/challenges" routerLinkActive="sideBarLinksActive">
+                            <mat-icon>gps_fixed</mat-icon>
+                            <span> Challenges</span>
+                        </div>
+                    </div>
+<!--                    <div *ngIf="isAuthenticated && role_id == 1" class="sideBarLinks" routerLink="/messages" routerLinkActive="sideBarLinksActive">-->
+<!--                        <mat-icon>send</mat-icon>-->
+<!--                        <span> Messenger</span>-->
+<!--                    </div>-->
+                    <div *ngIf="isAuthenticated" class="sideBarLinks" routerLink="/create-activity" routerLinkActive="sideBarLinksActive">
+                        <mat-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                            </svg>
+                        </mat-icon>
+                        <span> Create Activity</span>
+                    </div>
+                    <div *ngIf="isAuthenticated && role_id == 1" class="sideBarLinks" routerLink="/create-club-group" routerLinkActive="sideBarLinksActive">
+                        <mat-icon>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                            </svg>
+                        </mat-icon>
+                        <span> Create Club/Group</span>
+                    </div>
+
+                    <hr *ngIf="isAuthenticated && role_id == 1">
+
+
+                    <div *ngIf="isAuthenticated && role_id == 1">
+                        <div *ngIf="subscriptions && subscriptions?.length">
+                            <p class="pageSubTitle" style="margin-left: 20px; color: #909090">SUBSCRIPTIONS</p>
+                            <div class="sideBarLinks" *ngFor="let company of subscriptions"
+                                 [routerLink]="['/company/',company.id]">
+                                <div class="sideBarProfiles">
+                                    <img class="interestsImage" [src]="company.logo" alt="profile1" width="30px">
+                                </div>
+                                <span>{{company.firm}}</span>
+                            </div>
+                        </div>
+
+                        <div *ngIf="userInterests.length !== 0">
+                            <p class="pageSubTitle" style="margin-left: 20px; color: #909090">INTERESTS</p>
+                            <div class="sideBarLinks" *ngFor="let category of userInterests"
+                                 (click)="onFilterWithCategory(category)">
+                                <div class="sideBarProfiles">
+                                    <img class="interestsImage"src="{{category.image}}" alt="profile1" width="30px">
+                                </div>
+                                <span>{{category.name}}</span>
+                            </div>
+                            <div class="addInterest">
+                                <p routerLink="/account">Add Interests</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+    <button class="feedbaack" mat-flat-button color="primary" (click)="onOpenModal()" *ngIf="isAuthenticated">
+        <i style="margin-right: 5px; font-size:12px;" class="material-icons"> feedback </i>Feedback</button>
+    <ngx-smart-modal [closable]="false"  #feedBackModal identifier="feedBackModal" class="feedback-modal"
+    [customClass]="'nsm-dialog-animation-ttb'" *ngIf="isAuthenticated">
+        <div class="feedback-logo">
+            <div style="width: 20px;"></div>
+            <img src="../../assets/images/logo.png" alt="">
+            <i (click)="onCloseModal()" style="cursor:pointer;" class="material-icons">clear</i>
+        </div>
+        <div class="feedback-modal-header">
+            <h1>Your Feedback</h1>
+        </div>
+        <div class="feedback-modal-body">
+            <div class="feedback-modal-question">
+                <p>What is your opinion of this page?</p>
+            </div>
+        <form [formGroup]="feedbackForm">
+            <div class="feedback-description">
+                <textarea name="" id=""  rows="7" type="text" placeholder="Plese give your feedback here" formControlName="description"
+                required></textarea>
+                <mat-hint style="font-size: 10px;">* This field is required</mat-hint>
+            </div>
+
+            <div class="feedback-modal-button-holder">
+                <button 
+                mat-flat-button color="accent" 
+                (click)="onSubmitFeedback()"
+                >Submit
+                </button>
+            </div>
+            <div>
+                <mat-checkbox formControlName="contact_via_email" style="font-size: 12px;">Yes, contact me via email regarding my feedback</mat-checkbox>
+            </div>
+        </form>
+            
+        </div>
+    </ngx-smart-modal>
+</div>

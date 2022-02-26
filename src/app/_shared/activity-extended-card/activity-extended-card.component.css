@@ -1,0 +1,157 @@
+.activity-container {
+    padding: 10px;
+}
+
+.activity {
+    display: flex;
+}
+.activityDetail {
+    width: 100%;
+}
+
+.activityDetail-header {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.activityDetail-header mat-icon {
+    color: white; 
+    margin-right: 10%;
+}
+
+.activityPhoto {
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    width: 280px;
+    height: 200px;
+    background: center no-repeat;
+    background-size: cover;
+    margin-right: 30px;
+}
+
+.activityTitle:hover {
+    text-decoration: underline;
+}
+
+.activityDescription {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 15px;
+}
+
+.activityTitle {
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+hr {
+    margin-top: 20px;
+}
+
+.info {
+    color: gray;
+    font-size: 14px;
+}
+
+.usersJoined {
+    display: flex;
+    padding-top: 10px;
+}
+
+.userPhoto {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background: center no-repeat;
+    background-size: cover;
+}
+.nrJoins {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    margin-right: 5px;
+}
+
+.logoHolder {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+}
+
+.joinLogo {
+    font-size: 28px;
+    color: #ffd60f;
+    margin: 0 16px;
+}
+
+.xpLogo {
+    width: 24px;
+    height: 24px;
+    margin: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffd60f;
+
+}
+
+.xpLogo p {
+    color: #2d2d2d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .activityPhoto {
+        width: 195px;
+        height: 160px;
+        margin-right: 10px;
+    }
+
+    .activityDescription {
+        display: none;
+    }
+
+    .activityTitle {
+        font-size: 15px;
+    }
+
+    .userPhoto {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 530px) { 
+    .activityPhoto {
+        width: 165px;
+        height: 140px;
+    }
+}
+
+
+@media (max-width: 320px) {
+ 
+}
+
+

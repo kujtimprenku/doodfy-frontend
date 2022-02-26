@@ -1,0 +1,220 @@
+.activityCard {
+    width: 195px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 15px #000;
+    margin: 3px 3px 15px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.add-new-activity {
+    width: 195px;
+    min-height: 279px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 15px #000;
+    margin: 3px 3px 15px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+.add-new-activity * {
+    outline: none;
+}
+
+.add-new-activity:hover {
+    background-color: #15131b;;
+}
+.add-icon {
+    font-size: 5rem;
+    color: #dedede;
+    padding: 75px 0 75px 0;
+}
+
+.activityCard * {
+    outline: none;
+}
+
+img, .activityTitle, .cardFooter {
+    cursor: pointer;
+}
+
+.activityTitle {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.titleHolder {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.activityAuthor {
+    color: rgba(255, 255, 255, 0.71);
+    cursor: pointer;
+}
+
+.activityAuthor:hover {
+    color: white;
+}
+
+.activityContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.activityContent button {
+    margin-right: -12px;
+    margin-top: -7px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 0 16px 8px 16px;
+}
+
+.cardFooter mat-icon {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.cardFooter span {
+    font-size: 13px;
+}
+
+.cardFooter div {
+    display: flex;
+    align-items: center;
+}
+
+.cardList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logoHolder {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 120px;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+}
+
+.joinLogo {
+    font-size: 28px;
+    color: #ffd60f;
+    margin: 0 16px;
+}
+
+.xpLogo {
+    width: 24px;
+    height: 24px;
+    margin: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffd60f;
+
+}
+
+.xpLogo p {
+    color: #2d2d2d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.inviteModal {
+    height: 350px;
+    padding: 0px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+.neonDivider {
+    border: 1px solid pink;
+    border-image: linear-gradient(90deg, rgba(240, 72, 140, 1) 20%, rgba(87, 158, 255, 1) 90%) 0 0 10 0;
+}
+.socialIcons {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    margin-top: 15px;
+}
+.socialIcons div {
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+.socialIcons p {
+    margin-left: 15px;
+}
+.cancelButton {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.socialIcons :hover{
+    cursor: pointer;
+}
+
+/* =========== RESPONSIVE =========== */
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+
+}
+
+@media (max-width: 530px) {
+    .activityCard {
+        width: 149px;
+    }
+
+    .add-new-activity {
+        width: 149px;
+    }
+}
+
+@media (max-width: 320px) {
+    /* .activityCard {
+        width: 112px;
+    } */
+}
+
+

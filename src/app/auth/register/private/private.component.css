@@ -1,0 +1,155 @@
+.formGroup {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-form-field {
+  padding: 5px 0 5px 0;
+}
+
+mat-radio-group {
+  padding: 21.49px 0;;
+}
+
+.incorrectMessage {
+  color: #f44336;
+  height: 15px;
+  font-size: 13px;
+}
+
+.gender {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.placeHolder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.placeHolder mat-form-field {
+  width: 160px;
+}
+
+.buttonHolder{
+  display: flex;
+  justify-content: center;
+}
+
+.buttonHolder button {
+  margin: 0 5px;
+}
+
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 448px;
+  height: 600px;
+}
+
+.categoriesHolder
+{
+  height: 440px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.category {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  align-items: center;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.category div {
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.overlayOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(75, 75, 75, 0.51);
+}
+
+.selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(128, 16, 14, 0.71);
+}
+
+.login-mobile {
+  display: none;
+}
+
+
+
+@media (max-width: 1650px) {
+  .categories {
+    height: 480px;
+  }
+
+  .categoriesHolder
+  {
+    height: 330px;
+  }
+
+  .formGroup {
+    width: 300px;
+    font-size: 13px;
+  }
+
+  .placeHolder mat-form-field {
+    width: 120px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .formGroup {
+    width: 250px;
+  }
+
+  .categories {
+    width: 338px;
+  }
+}
+
+/* =========== RESPONSIVE - MOBILE =========== */
+
+@media (max-width: 730px) {
+  .login-mobile {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .login-mobile span {
+    color: #E5125E;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}

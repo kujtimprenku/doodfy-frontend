@@ -1,0 +1,48 @@
+<div class="cardList">
+    <div *ngFor="let activity of activities" class="activityContainer">
+        <div class="activity">
+            <div class="activityPhoto" [routerLink]="['/activity/', activity.id]"
+                 [ngStyle]="{'background-image': 'url('+activity.image+')'}">
+
+                <div class="logoHolder" [routerLink]="['/activity/', activity.id]">
+                    <div>
+                        <mat-icon *ngIf="activity.has_joined" class="joinLogo">check_circle</mat-icon>
+                    </div>
+                    <div *ngIf="activity.has_xp" class="xpLogo">
+                        <p>XP</p>
+                    </div>
+                </div>
+            </div>
+            <div class="activityDetail">
+                <div class="title-container">
+                    <p class="activityTitle" [routerLink]="['/activity/', activity.id]">{{activity.title}}
+                        <span style="color: #ff4c3b; font-size: 14px" *ngIf="!activity.is_active">&nbsp;finished</span>
+                    </p>
+
+                </div>
+                <div class="info">
+                    <div class="info-details">
+                        <p>Location: {{activity.location}} &bull; </p>
+                        <p>{{activity.start_date}} - {{activity.end_date}} &nbsp; &bull; &nbsp;</p>
+                    </div>
+                    <div style="display: flex">
+                        <ngx-stars [readonly]="true" [initialStars]="activity.rating.avg"
+                                   [color]="['#ffc601']"></ngx-stars>
+                        <p>({{activity.rating.nr_raters}})</p>
+                    </div>
+                </div>
+                <div *ngIf="activity['is_occurrence']" class="repetitive-activity"
+                     (click)="onOpenModal(activity['parent_id'])">
+                    <p>Occurrences ({{activity['nr_occurrences']}})</p><i class="material-icons">sync</i>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<app-repeat-activity-modal
+        [repeatedActivities]="repeatedActivities"
+        [isLoading]="isLoading"
+        [my_activity]="my_activity"
+        [parent_id]="parent_id">
+</app-repeat-activity-modal>

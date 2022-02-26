@@ -1,0 +1,90 @@
+<div class="filters">
+    <form class="example-form">
+        <div class="">
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Where?" aria-label="Number" matInput [formControl]="cityControl"
+                       [matAutocomplete]="city">
+                <mat-autocomplete autoActiveFirstOption #city="matAutocomplete">
+                    <mat-option *ngFor="let city of filteredCities | async" [value]="city.name.trim()">
+                        {{city.name.trim()}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Category?" aria-label="Number" matInput [formControl]="categoryControl"
+                       [matAutocomplete]="category">
+                <mat-autocomplete autoActiveFirstOption #category="matAutocomplete">
+                    <mat-option *ngFor="let category of filteredCategories | async" [value]="category.name">
+                        {{category.name.trim()}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button mat-flat-button (click)="onExploreFilter()">Search</button>
+        </div>
+
+        <div class="date-filters" *ngIf="hasQueryParams">
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="from"
+                       [formControl]="startDateControl"
+                       placeholder="From">
+                <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                <mat-datepicker #from color="accent" disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="to"
+                       [formControl]="endDateControl"
+                       placeholder="To">
+                <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                <mat-datepicker #to color="accent" disabled="false"></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="message"
+     *ngIf="exploreUsers?.length === 0 && exploreActivities?.length === 0 && exploreCompanies?.length === 0">
+    <p>No result found. Try different keywords.</p>
+</div>
+
+<div *ngIf="exploreUsers?.length !== 0">
+    <p class="pageTitle">{{responseKeys[0] | titlecase}}</p>
+    <app-friend-card [users]="exploreUsers"></app-friend-card>
+    <hr>
+</div>
+
+
+<div *ngIf="exploreActivities?.length !== 0 && !hasQueryParams">
+
+    <p class="pageTitle">{{responseKeys[1] | titlecase}}</p>
+    <app-activity-card [activity]="exploreActivities"></app-activity-card>
+    <hr>
+</div>
+
+<div class="test" *ngIf="exploreActivitiesOnScroll?.length !== 0 && hasQueryParams"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="1000"
+     (scrolled)="onScroll()">
+
+    <p class="pageTitle">{{responseKeys[1] | titlecase}}</p>
+    <app-activity-card [activity]="exploreActivitiesOnScroll"></app-activity-card>
+    <div class="see-more">
+        <button style="width: 165px" mat-flat-button color="accent"
+                *ngIf="!finished && exploreActivitiesOnScroll.length > 10" (click)="onScroll()">SEE MORE
+        </button>
+    </div>
+    <hr>
+</div>
+
+<div *ngIf="exploreCompanies?.length !== 0">
+    <p class="pageTitle">{{responseKeys[2] | titlecase}}</p>
+    <app-company-card [companies]="exploreCompanies"></app-company-card>
+</div>
+
+
+
+
+

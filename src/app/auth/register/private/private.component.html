@@ -1,0 +1,91 @@
+<form [formGroup]="registerPrivateForm" class="formGroup">
+    <div *ngIf="!showCategories">
+        <p class="incorrectMessage" *ngIf="emailExistErrorMessage">{{emailExistErrorMessage}}</p>
+        <mat-form-field>
+            <input matInput placeholder="Email" (focusout)="emailCheck()" formControlName="email" type="email" required>
+            <mat-error *ngIf="registerPrivateForm.get('email').hasError('required')">You must enter a value</mat-error>
+            <mat-error *ngIf="registerPrivateForm.get('email').hasError('email')">Enter valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="registerPrivateForm.get('username').hasError('required')">You must enter a value
+            </mat-error>
+            <mat-error *ngIf="registerPrivateForm.get('username').hasError('minlength')">Username minimum length 6
+                characters
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'"
+                   required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="registerPrivateForm.get('password').hasError('required')">You must enter a value
+            </mat-error>
+            <mat-error *ngIf="registerPrivateForm.get('password').hasError('minlength')">Password minimum length 8
+                characters
+            </mat-error>
+
+        </mat-form-field>
+        <mat-radio-group class="gender" formControlName="gender">
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="placeHolder">
+            <mat-form-field>
+                <mat-select placeholder="State" formControlName="state">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let country of countries"
+                                [value]="country['id']">{{country['name']}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerPrivateForm.get('state').hasError('required')">You must choose a state
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="City" formControlName="city_id">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let city of chosenCities" [value]="city['id']">{{city['name']}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerPrivateForm.get('city_id').hasError('required')">You must choose a city
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="buttonHolder">
+            <button mat-flat-button color="warn" (click)="toggleCategories()">Next</button>
+        </div>
+        <p class="login-mobile">Already have an account? 
+            <span [routerLinkActive]="['active']" [routerLink]="['/login']" >Log In
+            </span>
+        </p>
+    </div>
+</form>
+
+<div class="categories" *ngIf="showCategories">
+    <div>
+        <p class="registerTitle">Your interests</p>
+        <p>Please choose minimum 3 categories</p>
+    </div>
+
+    <div class="categoriesHolder">
+        <div class="category"
+             *ngFor="let category of categories"
+             (click)="onClickCategory(category.id)"
+             [ngStyle]="{'background-image':'url(' + category.image + ')'}">
+            <div class="overlayOverlay" [ngClass]="{'selected':setOverlay(category.id)}">
+                <div>{{category.name}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttonHolder">
+        <mat-spinner *ngIf="pending" color="warn" diameter="34"></mat-spinner>
+        <button mat-button (click)="toggleCategories()">Back</button>
+        <button mat-flat-button color="warn" [disabled]="selectedCategories.length<3" (click)="register()">Finish
+        </button>
+        <div *ngIf="pending" style="width: 34px"></div>
+    </div>
+</div>
+
+
+
+

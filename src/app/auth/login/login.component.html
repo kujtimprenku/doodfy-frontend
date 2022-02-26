@@ -1,0 +1,56 @@
+<div *ngIf="!showForgotPassword">
+    <div class="logo">
+        <img src="../../../assets/images/logo.png" alt="">
+    </div>
+    <div class="quote--holder">
+        <p>BRING MOTION INTO YOUR LIFE</p>
+    </div>
+    <div class="loadBesideTitle">
+        <div class="empty-space"></div>
+        <p class="registerTitle">Sign in to Doodfy</p>
+        <div style="width: 34px;">
+            <mat-spinner class="spinner" *ngIf="pending" color="warn" diameter="22"></mat-spinner>
+        </div>
+    </div>
+    <div class="incorrectMessage">{{message}}</div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="formGroup">
+        <mat-form-field>
+            <input matInput placeholder="Email address" formControlName="email" type="email" required>
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">Please enter email address</mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('email')">You must enter a valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password"
+                   [type]="hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">Please enter your password</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="warn" type="submit">Sign in</button>
+    </form>
+    <div class="belowLogin">
+        <p class="forgotPassword" (click)="showForgotPassword = true">Forgot password?</p>
+        <p class="signup-mobile">Create new account 
+            <span [routerLinkActive]="['active']" [routerLink]="['/signUp']" >SignUp
+            </span>
+        </p>
+    </div>
+</div>
+<div *ngIf="showForgotPassword">
+    <div class="loadBesideTitle">
+        <p class="registerTitle">Forgot Password</p>
+        <mat-spinner class="spinner" *ngIf="pending" color="warn" diameter="22"></mat-spinner>
+    </div>
+    <form class="formGroup">
+        <mat-form-field>
+            <input matInput name="email" [(ngModel)]="emailForPasswordChange" placeholder="Enter your email" required>
+        </mat-form-field>
+    </form>
+    <div class="buttonHolder">
+        <button style="margin-right: 10px" mat-flat-button (click)="showForgotPassword = false">Back</button>
+        <button mat-flat-button color="warn" (click)="forgotPassword()">Send</button>
+    </div>
+</div>
+
+
+
+

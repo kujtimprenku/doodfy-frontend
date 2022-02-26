@@ -1,0 +1,5 @@
+<p *ngIf="!historyActivities">No history</p>
+<div *ngIf="historyActivities" class="buttonHolder">
+  <button mat-flat-button (click)="onDeleteHistory()">Clear History</button>
+</div>
+<app-activity-card [activity]="historyActivities"></app-activity-card>

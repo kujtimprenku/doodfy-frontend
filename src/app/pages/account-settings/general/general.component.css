@@ -1,0 +1,160 @@
+.general-container {
+    display: flex;
+}
+
+.profile-details-container {
+    display: flex;
+    flex-direction: column
+}
+
+.profile-details {
+    color: #dfdfdf;
+    border: 1px solid gray;
+    padding: 20px;
+    width: 280px;
+    height: 320px;
+}
+
+.profile-details-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.profile-details-p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    width: 195px;
+    text-align: left;
+}
+
+
+.editProfile {
+    color: dodgerblue;
+    text-align: right;
+    margin-top: 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.buyXP {
+    margin-top: 20px;
+    color: #dfdfdf;
+    border: 1px solid gray;
+    padding: 20px;
+    width: 280px;
+    height: 80px;
+}
+
+.buyXP-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.buyXP-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.interests {
+    margin-left: 30px;
+    color: #dfdfdf;
+    border: 1px solid gray;
+    padding: 20px;
+    width: 624px;
+    min-height: 462px;
+}
+
+.user-interests {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.user-interests-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 190px;
+    height: 22px;
+    margin: 4px 4px 4px 4px;
+    padding-left: 10px;
+    border-radius: 3px;
+    background-color: rgba(126, 126, 126, 0.39);
+}
+
+
+
+.user-interests-name p {
+    font-size: 14px;
+}
+
+mat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: gray;
+}
+
+.infoIcon {
+    margin-left: 10px; 
+    display: flex; 
+    align-items: center;
+}
+
+.buyXp--Button {
+    width: 110px;
+    font-weight: 600;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .general-container {
+        flex-direction: column;
+    }
+
+    .profile-details-container {
+        padding: 10px;
+    }
+
+    .profile-details, .buyXP , .interests{
+        width: auto;
+        height: auto;
+    }
+
+    .interests {
+        margin: 10px;
+    }
+
+    .user-interests-name {
+        width: auto;
+    }
+}
+
+@media (max-width: 530px) { 
+
+}
+
+
+@media (max-width: 320px) {
+ 
+}
+
+

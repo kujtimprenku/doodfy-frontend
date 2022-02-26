@@ -1,0 +1,141 @@
+
+
+.subscribe p {
+    color: #9c9c9c;
+    font-size: 13px;
+}
+
+.links {
+    color: #9c9c9c;
+}
+
+.coverPhoto {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-position: center;
+    background-size: cover;
+    height: 280px;
+    font-size: 28px;
+}
+
+.gradient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+
+}
+
+.upload-icon {
+    font-size: 34px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.clubNavbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 70px;
+}
+
+.clubRoutes {
+    width: 100%;
+}
+
+.clubNavbar p:hover {
+    cursor: pointer;
+}
+
+.active {
+    color: white;
+    border-bottom: 2px solid #e5125e;
+}
+
+.subscribe {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    display: none;
+}
+
+.importButton span {
+    color: #fff;
+    background-color: #ff4f2f;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 10px 7px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    margin: 5px;
+}
+
+.icon-c {
+    margin-right: 5px;
+}
+
+.icons img{
+    margin-left: 5px;
+}
+
+.spinner {
+    /* margin-left: 15px; */
+    width: 34px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+
+/* === MODAL === */
+
+.inviteModal {
+    height: 400px;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inviteModal-header h3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.neonDivider {
+    border: 1px solid pink;
+    border-image: linear-gradient(90deg, rgba(240, 72, 140, 1) 20%, rgba(87, 158, 255, 1) 90%) 0 0 10 0;
+}
+
+.socialIcons {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.socialIcons div {
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+.socialIcons p {
+    margin-left: 15px;
+}
+.cancelButton {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.socialIcons :hover{
+    cursor: pointer;
+}

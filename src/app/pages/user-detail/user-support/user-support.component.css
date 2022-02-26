@@ -1,0 +1,36 @@
+.support{
+    display: flex;
+    flex-direction: column;
+}
+.support-header {
+    display: flex;
+    justify-content: space-between;
+}
+.support-header p {
+    color: #9b9b9b;
+}
+.support-header span {
+    color: white;
+    font-size: 56px;
+    font-weight: 600;
+}
+
+.support-bottom {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    color: rgb(181, 181, 181);
+}
+
+.support-bottom .button {
+    border-radius: 12px;
+    padding: 3px 12px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+}
+
+.support-bottom div {
+    margin-top: 30px;
+}

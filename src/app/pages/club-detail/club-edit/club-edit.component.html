@@ -1,0 +1,30 @@
+<form class="editForm" [formGroup]="editForm" spellcheck="false">
+  <div class="formFields">
+      <mat-form-field style="margin-top: 20px">
+          <input matInput placeholder="Club Name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Facebook" formControlName="facebook_url">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Instagram" formControlName="instagram_url">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Twitter" formControlName="twitter_url">
+      </mat-form-field>
+  </div>
+</form>
+<p style=" color:grey;">Club Information</p>
+<div style="background-color: white; width: 100%; margin: 10px 0;">
+  <angular-editor [(ngModel)]="description" [config]="config"></angular-editor>
+</div>
+<div class="buttonHolder">
+    <div>
+        <button mat-flat-button (click)="fillForm(club)" >Reset</button>
+        <button mat-flat-button color="warn" (click)="saveClubEdit()">Save</button>
+        <mat-spinner *ngIf="pending" color="primary" diameter="34"></mat-spinner>
+    </div>
+    <div>
+        <button mat-flat-button color="warn" (click)="confirmGroupDelete(club.id)">Delete Club</button>
+    </div>
+</div>

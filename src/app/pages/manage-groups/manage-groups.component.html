@@ -1,0 +1,6 @@
+<nav mat-tab-nav-bar [backgroundColor]="'transparent'" >
+  <a mat-tab-link style="color: white" [active]="rla.isActive" routerLinkActive #rla="routerLinkActive" routerLink="/manage" [routerLinkActiveOptions]="{exact:
+    true}"> Groups </a>
+  <a mat-tab-link style="color: white" [active]="rlaa.isActive" routerLinkActive #rlaa="routerLinkActive" routerLink="clubs" >Clubs</a>
+</nav>
+<router-outlet></router-outlet>

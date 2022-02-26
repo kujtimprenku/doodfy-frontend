@@ -1,0 +1,100 @@
+.activityCard {
+    box-shadow: none;
+    width: 195px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: #0f0d15;
+    margin: 3px 3px 15px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grayPageTitle {
+    background-color: #25242a;
+    border-radius: 2px;
+    width: 120px;
+    height: 20px;
+    margin-left: 4px;
+    margin-bottom: 18px;
+}
+
+img {
+    border-radius: 2px;
+}
+
+.activityAuthor {
+    color: rgba(255, 255, 255, 0.71);
+    cursor: pointer;
+}
+.grayTitle {
+    height: 25px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: #25242a;
+    margin-bottom: 7px;
+}
+
+.grayAuthor {
+    height: 20px;
+    border-radius: 2px;
+    width: 45%;
+    background-color: #25242a;
+}
+
+.grayIcon {
+    height: 20px;
+    border-radius: 2px;
+    width: 80px;
+    background-color: #25242a;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 0 16px 8px 16px;
+}
+
+.cardFooter div {
+    display: flex;
+    align-items: center;
+}
+
+.cardList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+
+}
+
+@media (max-width: 530px) {
+    .activityCard {
+        width: 149px;
+    }
+}
+
+
+@media (max-width: 320px) {
+ 
+}
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+<div class="subscribers-container">
+  <div class="subscribers-item" *ngFor="let subscriber of subscribers">
+    <img class="subscriber-item-photo" [routerLink]="['/', subscriber.id]" [src]="subscriber.profile_image" alt="">
+    <p class="subscriber-name" [routerLink]="['/', subscriber.id]">{{subscriber.username}}</p>
+  </div>
+</div>

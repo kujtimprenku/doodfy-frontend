@@ -1,0 +1,184 @@
+.joinButton {
+    color: white;
+    width: 500px;
+}
+.joinButton     button {
+    width: 100px;
+}
+.membersTitle {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+.club-left-content {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    width: 100%;
+}
+
+.group-admin-img {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    background-color: #1f1d25;
+    border-radius: 7px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.group-admin-img  img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+
+.friendsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.friendsList .friendCard {
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+    height: 150px;
+    padding: 20px 20px 10px 20px;
+    align-items: center;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+
+
+.friendsList .profilePhoto {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.friendsList p {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #272727;
+    font-weight: 600;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.friendsList .friendStatus {
+    color: dodgerblue;
+}
+
+.friendsList .friendSearch {
+    font-size: 13px;
+    background: dodgerblue;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: white;
+    margin: 5px;
+}
+
+.club-content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-and-username {
+    display: flex;
+}
+
+.image-and-username img {
+    width: 50px;
+    height: 50px;
+}
+
+.image-and-username p {
+    margin-left: 10px;
+}
+.invite-members {
+    min-width: 150px;
+    max-width: 485px;
+    width: 100%;
+    color: #ffffff;
+}
+.user-holder {
+    display: flex;
+    justify-content: space-between;
+}
+.invite-members-title {
+    font-size: 16px;
+}
+.example-form {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 0 15px #000;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 350px;
+    min-height: 100px;
+    margin: 0 auto;
+    color: #fff;
+}
+.example-full-width {
+    width: 100%;
+}
+
+mat-option {
+    height: 80px;
+}
+
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .friendCard {
+        width: 65px;
+    }
+
+    .invite-members {
+        padding-top: 10px;
+    }
+
+    .club-content-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .example-form {
+        width: 100%;
+        margin: 0;
+        padding: 20px 5px 0 5px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 530px) {
+
+}
+
+
+@media (max-width: 320px) {
+
+}

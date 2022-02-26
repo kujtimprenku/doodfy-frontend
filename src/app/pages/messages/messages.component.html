@@ -1,0 +1,27 @@
+<div class="chatContainer">
+    <div class="chatUsers">
+        <div class="chatHeader">Messages</div>
+        <hr style="margin:0; border-bottom-color: #d7d7d7">
+        <div class="usersHolder">
+            <div class="user" *ngFor="let user of lastChatUsers" (click)="chatWith(user)"
+                 [routerLink]="['friend/', user.id]"
+                 routerLinkActive="chattingWith">
+                <div class="profilePhoto" [ngStyle]="{'background-image': 'url('+user.profile_image+')'}"></div>
+                <div class="chatInfo">
+                    <div>
+                        <p class="userName">{{user.username}}</p>
+                        <p class="lastMessage">Latest: {{user.message}}</p>
+                    </div>
+                    <div class="timeSettings">
+                        <span class="messageTime">{{user.created}}</span>
+                        <mat-icon class="settings">settings</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chatWindow">
+        <router-outlet></router-outlet>
+    </div>
+</div>

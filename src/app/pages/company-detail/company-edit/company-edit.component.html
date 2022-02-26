@@ -1,0 +1,35 @@
+<form class="editForm" [formGroup]="editForm" spellcheck="false">
+    <div class="formFields">
+            <app-image-upload [currentPhoto]="currentPhoto" (fileSrc)="setImageSrc($event)"></app-image-upload>
+        <mat-form-field style="margin-top: 20px">
+            <input matInput placeholder="Company Name" formControlName="firm">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Street" formControlName="street">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Branch" formControlName="branch">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Facebook" formControlName="facebook_url">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Instagram" formControlName="instagram_url">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Twitter" formControlName="twitter_url">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Website" formControlName="website">
+        </mat-form-field>
+    </div>
+</form>
+<p style=" color:grey;">Company Information</p>
+<div style="background-color: white; width: 100%; margin: 10px 0;">
+    <angular-editor [(ngModel)]="description" [config]="config"></angular-editor>
+</div>
+<div class="buttonHolder">
+    <button mat-flat-button (click)="fillForm(company)" >Reset</button>
+    <button mat-flat-button color="warn" (click)="saveCompanyEdit()">Save</button>
+    <mat-spinner *ngIf="pending" color="warn" diameter="34"></mat-spinner>
+</div>

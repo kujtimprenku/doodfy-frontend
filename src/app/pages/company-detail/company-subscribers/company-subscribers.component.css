@@ -1,0 +1,26 @@
+.subscribers-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.subscribers-item {
+    display: flex;
+    min-width: 261px;
+    height: 80px;
+    align-items: center;
+    margin: 3px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+.subscriber-item-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.subscriber-name {
+    font-weight: 600;
+    margin-left: 20px;
+}

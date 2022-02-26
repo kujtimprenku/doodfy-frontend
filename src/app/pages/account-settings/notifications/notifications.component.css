@@ -1,0 +1,40 @@
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #dfdfdf;
+}
+.settingsHolder {
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+    align-items: center;
+    color: #dfdfdf;
+    border: 1px solid gray;
+    padding: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.content-p {
+    color: grey;
+    font-size: 13px;
+}
+
+.toggleButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px;
+}
+.toggleButtons p {
+    font-weight: bold;
+}

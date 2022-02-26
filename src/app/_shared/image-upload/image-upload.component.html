@@ -1,0 +1,24 @@
+<div class="uploadContent">
+    <div class="imageHolder">
+
+        <p *ngIf="!selected && !currentPhoto">Uploaded image shows here</p>
+        <div *ngIf="selected">
+            <div class="img-preview" [ngStyle]="{'background-image': 'url('+selectedFiles.src+')'}">
+            </div>
+        </div>
+
+        <div *ngIf="!selected && currentPhoto">
+            <div class="img-preview test" [ngStyle]="{'background-image': 'url('+currentPhoto+')'}">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="buttonHolder">
+        <label class="importButton">
+            <span>Upload image</span>
+            <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)"/>
+        </label>
+    </div>
+</div>
+

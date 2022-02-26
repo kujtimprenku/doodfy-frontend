@@ -1,0 +1,87 @@
+.uploadContent {
+    width: 700px;
+    display: flex;
+}
+p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #777777;
+}
+
+.imageHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px dashed gray;
+    border-radius: 5px;
+    width: 280px;
+    height: 200px;
+}
+
+.img-preview {
+    width: 270px;
+    min-height: 190px;
+    border-radius: 5px;
+    background: center no-repeat;
+    background-size: cover;
+}
+
+.buttonHolder {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.importButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #ff4f2f;
+    border-radius: 4px;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+input {
+    display: none;
+}
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .uploadContent {
+        flex-direction: column;
+        width: 300px;
+    
+    }
+    .buttonHolder {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 530px) {
+
+}
+
+
+@media (max-width: 320px) {
+ 
+}

@@ -1,0 +1,57 @@
+.chatHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    font-weight: 700;
+    color: #d7d7d7;
+}
+
+.chatHolder {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.messageInput {
+    padding: 10px 20px 0 20px;
+}
+
+.chat {
+    height: 80vh;
+    padding: 0 15px;
+    overflow: auto;
+}
+
+.message {
+    display: flex;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+    max-width: 400px;
+}
+
+.myMessage {
+    display: flex;
+
+    background-color: cadetblue;
+    color: white;
+}
+
+.friendMessage {
+    background-color: #b9b9b9;
+    color: #232323;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+

@@ -1,0 +1,43 @@
+<div class="notifications-container">
+    <div class="notifications-header">
+        <p class="pageTitle">Your Notifications</p>
+        <p style="cursor: pointer" class="pageTitle" [routerLink]="['/account/notification']">Notifications Settings</p>
+    </div>
+    <hr>
+    <div class="spinner" *ngIf="isLoading">
+        <mat-spinner color="warn" diameter="32"></mat-spinner>
+    </div>
+    <div class="notification" *ngFor="let notification of notifications" (click)="onNavigate(notification)">
+        <div class="notification-details">
+            <div class="notification-user-photo"
+                 [ngStyle]="{'background-image': 'url('+notification.user.profile_image+')'}"></div>
+            <div class="notification-info">
+                <div>
+                    <span class="bold-text">{{notification.user.username}}</span>
+                    <span>{{' ' + notification['message'] }}</span>
+                    <span class="bold-text" *ngIf="notification.activity"> {{' ' + notification.activity.title}}</span>
+                    <span class="bold-text" *ngIf="notification['group']">{{ ' ' + notification['group']['name']}}</span>
+                </div>
+                <div class="notification-time">
+                <span class="notification-time-main">
+                  <i *ngIf="notification['type'] === 'comment'" class="material-icons">comment</i>
+                  <i *ngIf="notification['type'] === 'invite'" class="material-icons">group</i>
+                  <i *ngIf="notification['type'] === 'join'" class="material-icons">group_add</i>
+                  <i *ngIf="notification['type'] === 'invite_group'" class="material-icons">group_add</i>
+                  <span style="margin-left: 10px;">{{notification['created_at'] | timeAgo}}</span>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="notification-actions">
+            <button (click)="$event.stopPropagation();" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="removeNotification(notification['id'])">
+                    <span>Remove this notification</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</div>

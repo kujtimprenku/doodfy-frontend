@@ -1,0 +1,162 @@
+.activity {
+    display: flex;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.activityPhoto {
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    width: 130px;
+    height: 100px;
+    background: center no-repeat;
+    background-size: cover;
+    margin-right: 30px;
+}
+
+.activityTitle:hover {
+    text-decoration: underline;
+}
+
+.activityTitle {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.info {
+    display: flex;
+    color: gray;
+    font-size: 14px;
+}
+
+.logoHolder {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 40px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9023984593837535) 0%, rgba(0, 0, 0, 0.6727065826330532) 35%, rgba(255, 255, 255, 0) 100%);
+}
+
+.joinLogo {
+    font-size: 28px;
+    color: #ffd60f;
+    margin: 0 16px;
+}
+
+.xpLogo {
+    width: 24px;
+    height: 24px;
+    margin: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffd60f;
+
+}
+
+.xpLogo p {
+    color: #2d2d2d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.info-details {
+    display: flex;
+}
+
+.repetitive-activity {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.repetitive-activity i {
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1700px) {
+
+}
+
+@media (max-width: 1430px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 730px) {
+    .cardList {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .activityContainer {
+        width: 207px;
+        margin: 3px 3px 15px 3px;
+    }
+
+    .activity {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .activityPhoto {
+        width: auto;
+        height: 150px;
+        margin: 0px;
+    }
+
+    .activityTitle {
+        margin-top: 15px;
+    }
+
+    .info {
+        flex-direction: column;
+        height: 100px;
+    }
+
+    hr {
+        display: none;
+    }
+
+    .info-details {
+        flex-direction: column;
+        height: 65px;
+    }
+
+    .title-container {
+        height: 60px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 530px) {
+    .activityContainer {
+        width: 161.1px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .activityContainer {
+        width: 153.1px;
+    }
+}
+
+
+
+
