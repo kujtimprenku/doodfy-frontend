@@ -36,6 +36,7 @@ export class PrivateComponent implements OnInit {
 
         this.authService.getInitialInfo().subscribe(response => {
             this.categories = response['categories'];
+            console.log(this.categories);
             this.countries = response['countries'];
             this.cities = response['cities'];
         });

@@ -14,6 +14,7 @@ import {UserService} from 'src/app/_services/user.service';
 import {Title} from '@angular/platform-browser';
 import {Group} from '../../_models/group';
 import {Place} from '../../_models/place';
+import {getRandomImage} from '../../mocks/random-images';
 
 
 function validateDate(c: AbstractControl): { [key: string]: boolean } | null {
@@ -311,9 +312,9 @@ export class CreateActivityComponent implements OnInit, OnDestroy {
             ...this.firstFormGroup.getRawValue(),
             ...this.thirdFormGroup.value,
             subcategory_id: this.subcategory_id,
-            image: this.currentImage,
+            image: getRandomImage(),
             group_id: this.groupActivity ? this.groupActivity.id : null,
-            place_id: this.placeActivity ? this.placeActivity.id : null,
+            place_id: this.placeActivity ? this.placeActivity.id : 1,
             start_date: this.returnStartDate.toLocaleDateString() + ' ' + this.firstFormGroup.get('dateAndTime.startTime').value + ':00',
             end_date: this.returnEndDate.toLocaleDateString() + ' ' + this.firstFormGroup.get('dateAndTime.endTime').value + ':00',
             edit_all: edit_all,

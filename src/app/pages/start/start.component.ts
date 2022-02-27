@@ -31,18 +31,18 @@ export class StartComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.activities = startActivities;
-        // this.activityService.getStartRecommendedActivities().subscribe((data: Activity[]) => {
-        //     this.activities = data
-        // }, error => {
-        //     console.log(error);
-        // });
+        // this.activities = startActivities;
+        this.activityService.getStartRecommendedActivities().subscribe((data: Activity[]) => {
+            this.activities = data
+        }, error => {
+            console.log(error);
+        });
         this.companies = startCompanies;
-        // this.companyService.getCompanies().subscribe((data: Company[]) => {
-        //     this.companies = data;
-        // }, error => {
-        //     console.log(error);
-        // });
+        this.companyService.getCompanies().subscribe((data: Company[]) => {
+            this.companies = data;
+        }, error => {
+            console.log(error);
+        });
         this.titleService.setTitle('Start - Doodfy');
         this.getPlaces();
     }
